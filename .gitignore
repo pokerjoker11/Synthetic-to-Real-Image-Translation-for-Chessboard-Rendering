@@ -1,0 +1,60 @@
+# ===== OS / IDE =====
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.iml
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+build/
+dist/
+.ipynb_checkpoints/
+
+# ===== Logs / runs =====
+*.log
+runs/
+wandb/
+mlruns/
+lightning_logs/
+
+# ===== Outputs / checkpoints =====
+outputs/
+results/
+predictions/
+checkpoints/
+weights/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# ===== BIG DATA (do NOT push) =====
+data/
+datasets/
+raw/
+processed/
+frames/
+videos/
+renders/
+*.zip
+*.7z
+*.rar
+*.tar
+*.gz
+
+# If you want to keep small label files inside ignored data/:
+!data/**/gt.csv
+!data/**/README.md
+!data/**/README.txt
+
+# If you keep documentation images, allow them:
+!docs/**/*.png
+!docs/**/*.jpg
+!docs/**/*.jpeg
