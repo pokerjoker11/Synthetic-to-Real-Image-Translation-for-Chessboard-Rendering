@@ -1,0 +1,23 @@
+@'
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# Project data & outputs (DO NOT COMMIT)
+data/
+renders/
+results/
+checkpoints*/
+outputs/
+*.zip
+
+# OS junk
+.DS_Store
+Thumbs.db
+'@ | Set-Content -Encoding UTF8 .gitignore
