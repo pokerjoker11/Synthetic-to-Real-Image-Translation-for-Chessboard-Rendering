@@ -42,10 +42,15 @@ class UNetDown(nn.Module):
 
 
 class UNetUp(nn.Module):
+    """
+    Upsample + Conv (instead of ConvTranspose) to reduce checkerboard artifacts.
+    This keeps spatial sizes identical to the original pix2pix U-Net for 256x256 inputs.
+    """
     def __init__(self, in_ch: int, out_ch: int, dropout: float = 0.0):
         super().__init__()
         layers = [
-            nn.ConvTranspose2d(in_ch, out_ch, kernel_size=4, stride=2, padding=1, bias=False),
+            nn.Upsample(scale_factor=2, mode="bilinear", align_corners=False),
+            nn.Conv2d(in_ch, out_ch, kernel_size=3, stride=1, padding=1, bias=False),
             nn.BatchNorm2d(out_ch),
             nn.ReLU(inplace=True),
         ]
@@ -55,7 +60,6 @@ class UNetUp(nn.Module):
 
     def forward(self, x: torch.Tensor, skip: torch.Tensor) -> torch.Tensor:
         x = self.block(x)
-        # concat skip connection
         return torch.cat([x, skip], dim=1)
 
 
@@ -79,7 +83,7 @@ class UNetGenerator(nn.Module):
         self.d7 = UNetDown(base * 8, base * 8)                   # 4 -> 2
         self.d8 = UNetDown(base * 8, base * 8, normalize=False)  # 2 -> 1 (bottleneck)
 
-        # Decoder (up)
+        # Decoder (up)  (note: channel arithmetic stays identical)
         self.u1 = UNetUp(base * 8, base * 8, dropout=0.5)        # 1 -> 2
         self.u2 = UNetUp(base * 16, base * 8, dropout=0.5)       # 2 -> 4
         self.u3 = UNetUp(base * 16, base * 8, dropout=0.5)       # 4 -> 8
@@ -88,8 +92,10 @@ class UNetGenerator(nn.Module):
         self.u6 = UNetUp(base * 8, base * 2)                     # 32 -> 64
         self.u7 = UNetUp(base * 4, base)                         # 64 -> 128
 
+        # Final: upsample 128->256 then conv to RGB
         self.final = nn.Sequential(
-            nn.ConvTranspose2d(base * 2, out_ch, kernel_size=4, stride=2, padding=1),  # 128 -> 256
+            nn.Upsample(scale_factor=2, mode="bilinear", align_corners=False),  # 128 -> 256
+            nn.Conv2d(base * 2, out_ch, kernel_size=3, stride=1, padding=1, bias=True),
             nn.Tanh(),
         )
 
@@ -124,7 +130,6 @@ class PatchDiscriminator(nn.Module):
     """
     def __init__(self, in_ch: int = 3, base: int = 64):
         super().__init__()
-        # input is concatenation => 2*in_ch channels
         c = in_ch * 2
 
         def block(in_f, out_f, normalize=True):
@@ -135,11 +140,11 @@ class PatchDiscriminator(nn.Module):
             return layers
 
         self.model = nn.Sequential(
-            *block(c, base, normalize=False),     # 256 -> 128
-            *block(base, base * 2),               # 128 -> 64
-            *block(base * 2, base * 4),           # 64 -> 32
-            *block(base * 4, base * 8, normalize=True),  # 32 -> 16
-            nn.Conv2d(base * 8, 1, 4, 1, 1)       # 16 -> 15 (patch map)
+            *block(c, base, normalize=False),          # 256 -> 128
+            *block(base, base * 2),                    # 128 -> 64
+            *block(base * 2, base * 4),                # 64 -> 32
+            *block(base * 4, base * 8, normalize=True),# 32 -> 16
+            nn.Conv2d(base * 8, 1, 4, 1, 1)            # 16 -> 15
         )
 
     def forward(self, a: torch.Tensor, b: torch.Tensor) -> torch.Tensor:
