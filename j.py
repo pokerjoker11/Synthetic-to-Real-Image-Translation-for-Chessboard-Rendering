@@ -1,10 +1,11 @@
 import os
 import shutil
 
-root = "game8/images"
+root = "game10/images"
 
-for subdir in [d for d in os.listdir(root) if os.path.isdir(os.path.join(root, d))]:
-    path = os.path.join(root, subdir)
-    for f in os.listdir(path):
-        shutil.move(os.path.join(path, f), os.path.join(root, f))
-    os.rmdir(path)
+for item in os.listdir(root):
+    path = os.path.join(root, item)
+    # If it's a file (not a folder), delete it
+    if os.path.isfile(path):
+        os.remove(path)
+        print(f"Deleted: {path}")

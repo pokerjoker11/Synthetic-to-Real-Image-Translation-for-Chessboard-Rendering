@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\אליה\Synthetic-to-Real-Image-Translation-for-Chessboard-Rendering\venv"
+VIRTUAL_ENV="C:\Users\Elia\deep_learning_project\Synthetic-to-Real-Image-Translation-for-Chessboard-Rendering\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

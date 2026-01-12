@@ -2,7 +2,7 @@ import os
 import shutil
 import cv2
 
-root = "game8/images"
+root = "game10/images"
 
 for folder_name in os.listdir(root):
     folder_path = os.path.join(root, folder_name)
