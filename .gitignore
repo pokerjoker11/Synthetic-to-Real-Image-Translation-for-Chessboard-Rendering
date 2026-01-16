@@ -1,18 +1,24 @@
-@'
 # Python
 __pycache__/
 *.pyc
+*.pyo
+*.egg-info/
+.eggs/
 .venv/
 venv/
+env/
 
 # IDE
 .vscode/
 .idea/
+*.swp
+*.swo
 
 # Project data & outputs (DO NOT COMMIT)
 data/
 renders/
 results/
+checkpoints/
 checkpoints*/
 outputs/
 *.zip
@@ -20,4 +26,6 @@ outputs/
 # OS junk
 .DS_Store
 Thumbs.db
-'@ | Set-Content -Encoding UTF8 .gitignore
+
+# Jupyter
+.ipynb_checkpoints/

@@ -22,8 +22,8 @@ def main():
     out_dir = Path("results/dataset_smoke")
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    train_csv = Path("data/splits/train.csv")
-    val_csv = Path("data/splits/val.csv")
+    train_csv = Path("data/splits_rect/train.csv")
+    val_csv = Path("data/splits_rect/val.csv")
 
     ds_train = PairedChessDataset(train_csv, repo_root=".", image_size=256, train=True, seed=123)
     ds_val = PairedChessDataset(val_csv, repo_root=".", image_size=256, train=False, seed=123)

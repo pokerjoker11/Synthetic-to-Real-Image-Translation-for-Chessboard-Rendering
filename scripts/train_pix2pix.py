@@ -189,8 +189,8 @@ def get_device(name: str) -> torch.device:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--device", type=str, default="auto", help="auto|cpu|cuda")
-    ap.add_argument("--train_csv", type=str, default="data/splits/train.csv")
-    ap.add_argument("--val_csv", type=str, default="data/splits/val.csv")
+    ap.add_argument("--train_csv", type=str, default="data/splits_rect/train.csv")
+    ap.add_argument("--val_csv", type=str, default="data/splits_rect/val.csv")
 
     ap.add_argument("--image_size", type=int, default=256)
     ap.add_argument("--load_size", type=int, default=286, help="resize before random crop; set ==image_size to disable crop")
@@ -215,6 +215,8 @@ def main() -> None:
 
     ap.add_argument("--samples_dir", type=str, default="results/train_samples")
     ap.add_argument("--ckpt_dir", type=str, default="checkpoints")
+    ap.add_argument("--resume", type=str, default=None,
+                    help="Path to checkpoint to resume from. If not set, auto-resumes from ckpt_dir/latest.pt if exists.")
     ap.add_argument("--seed", type=int, default=123)
 
     args = ap.parse_args()
@@ -285,9 +287,19 @@ def main() -> None:
 
     step = 0
     best_val = float("inf")
-    if ckpt_latest.exists():
-        step, best_val = load_checkpoint(ckpt_latest, G, D, optG, optD)
-        print(f"[INFO] resumed from {ckpt_latest} (step={step}, best_val={best_val:.4f})")
+
+    # Determine which checkpoint to resume from
+    resume_path = None
+    if args.resume:
+        resume_path = Path(args.resume)
+        if not resume_path.exists():
+            raise FileNotFoundError(f"Resume checkpoint not found: {resume_path}")
+    elif ckpt_latest.exists():
+        resume_path = ckpt_latest
+
+    if resume_path is not None:
+        step, best_val = load_checkpoint(resume_path, G, D, optG, optD)
+        print(f"[INFO] resumed from {resume_path} (step={step}, best_val={best_val:.4f})")
 
     # AMP setup (on by default on CUDA, unless disabled)
     use_amp = (device.type == "cuda") and (not args.no_amp)

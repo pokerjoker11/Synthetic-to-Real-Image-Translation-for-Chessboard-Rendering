@@ -16,7 +16,7 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"[INFO] device={device}")
 
-    ds = PairedChessDataset("data/splits/train.csv", repo_root=".", image_size=256, train=True, seed=123)
+    ds = PairedChessDataset("data/splits_rect/train.csv", repo_root=".", image_size=256, train=True, seed=123)
     dl = DataLoader(ds, batch_size=2, shuffle=True, num_workers=0)
     batch = next(iter(dl))
     A = batch["A"].to(device)  # synth
