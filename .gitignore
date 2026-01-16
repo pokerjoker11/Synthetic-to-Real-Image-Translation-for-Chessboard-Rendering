@@ -26,6 +26,11 @@ outputs/
 # OS junk
 .DS_Store
 Thumbs.db
+.gitignore
+.cursor/
 
 # Jupyter
 .ipynb_checkpoints/
+
+"Project 3: Synthetic-to-Real Image Translation for Chessboard Rendering"
+"Project Final: Photorealistic Chessboard Rendering"
