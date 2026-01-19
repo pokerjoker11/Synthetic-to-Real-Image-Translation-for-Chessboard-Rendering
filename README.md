@@ -71,12 +71,9 @@ data/
 │   └── images/
 │       └── game*_frame_*.jpg
 │
-├── real_rect/                 # (Optional) Rectified real images
-│   └── *.jpg
-│
-├── synth_rect/               # Rendered synthetic images
+├── synth_rect_rerender/      # Rendered synthetic images (aligned with real)
 │   └── images/
-│       └── *.png
+│       └── row*_*.png
 │
 ├── splits_rect/              # Train/val splits (CSV files)
 │   ├── train.csv             # Columns: real, synth, fen, viewpoint
@@ -92,13 +89,26 @@ Training CSVs (`train.csv`, `val.csv`) must have these columns:
 
 | Column | Description | Example |
 |--------|-------------|---------|
-| `real` | Path to real image (relative to repo root or absolute) | `images/game6_frame_029716.jpg` |
-| `synth` | Path to synthetic image | `data/synth_rect/images/game6_frame_029716.png` |
+| `real` | Path to real image (relative to repo root) | `data/real/images/game6_frame_029716.jpg` |
+| `synth` | Path to synthetic image | `data/synth_rect_rerender/images/row000000_white_*.png` |
 | `fen` | FEN string for the position | `rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR` |
 | `viewpoint` | Camera perspective | `white` or `black` |
 
 **Note:** Data files are not included in this repository. See your course materials for
 data download instructions.
+
+### Checkpoint Placement
+
+Trained model checkpoints should be placed in the `checkpoints/` directory:
+
+```
+checkpoints/
+├── best.pt       # Best validation checkpoint (preferred)
+└── latest.pt     # Most recent training checkpoint
+```
+
+If you have a pre-trained checkpoint, place it in this directory before running inference.
+The evaluation API will automatically find it (see Checkpoint Resolution below).
 
 ---
 
@@ -267,6 +277,26 @@ python eval_api.py
 python eval_api.py --ckpt /path/to/checkpoint.pt
 ```
 
+### Sample Output Generation
+
+To generate sample outputs demonstrating the model's capabilities:
+
+```bash
+# Generate outputs for the starting position
+python eval_api.py --fen "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR" --viewpoint white
+
+# Generate outputs for a mid-game position
+python eval_api.py --fen "r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R" --viewpoint white
+
+# Generate outputs from black's viewpoint
+python eval_api.py --fen "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR" --viewpoint black
+```
+
+Each command produces three files in `./results/`:
+- `synthetic.png`: The Blender-rendered synthetic chessboard
+- `realistic.png`: The model's translation to a realistic-looking image  
+- `side_by_side.png`: A concatenated comparison of both images
+
 ---
 
 ## Smoke Tests
@@ -304,6 +334,24 @@ python train.py \
     --log_every 1 \
     --sample_every 5 \
     --val_every 10
+```
+
+### End-to-End Pipeline Test
+
+A comprehensive test script verifies the entire pipeline:
+
+```bash
+# Run all tests (imports, data, model, dataset, training, inference)
+python test_pipeline.py
+
+# Skip training test (faster)
+python test_pipeline.py --no-train
+
+# Skip inference test (if no checkpoint/Blender)
+python test_pipeline.py --no-infer
+
+# Custom number of training steps
+python test_pipeline.py --train-steps 10
 ```
 
 ---
@@ -354,6 +402,8 @@ For reproducibility, use the same seed and hardware configuration.
 chess-s2r/
 ├── train.py                 # Top-level training entrypoint
 ├── eval_api.py              # Evaluation API (generate_chessboard_image)
+├── test_pipeline.py         # End-to-end pipeline test
+├── smoke_test.py            # Quick installation smoke test
 ├── requirements.txt         # Python dependencies
 ├── README.md                # This file
 │
@@ -375,6 +425,15 @@ chess-s2r/
 │   │   └── pairs_dataset.py # PyTorch Dataset for paired images
 │   └── models/
 │       └── pix2pix_nets.py  # UNet Generator + PatchGAN Discriminator
+│
+├── checkpoints/             # Trained model checkpoints
+│   ├── best.pt
+│   └── latest.pt
+│
+├── results/                 # Training samples and inference outputs
+│   └── train_samples/
+│
+├── legacy/                  # Old/unused files from previous iterations
 │
 └── data/                    # (gitignored) Training data
     └── ...

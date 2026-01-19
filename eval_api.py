@@ -46,13 +46,13 @@ def _ensure_ml_imports():
 REPO_ROOT = Path(__file__).resolve().parent
 ASSETS_DIR = REPO_ROOT / "assets"
 BLEND_FILE = ASSETS_DIR / "chess-set.blend"
-BLENDER_SCRIPT = ASSETS_DIR / "chess_position_api_v2.py"
+BLENDER_SCRIPT = ASSETS_DIR / "chess_position_api_v3.py"
 
 RESULTS_DIR = REPO_ROOT / "results"
 TMP_RENDERS_DIR = REPO_ROOT / "renders"
-DEFAULT_RES = 1024
+DEFAULT_RES = 512  # Match training data render resolution
 DEFAULT_SAMPLES = 64
-DEFAULT_CKPT_DIR = REPO_ROOT / "checkpoints"
+DEFAULT_CKPT_DIR = REPO_ROOT / "checkpoints_clean"
 
 # Blender output view to use as synthetic
 SYNTH_VIEW_NAME = "1_overhead.png"
@@ -96,12 +96,16 @@ def _find_checkpoint(ckpt_dir: Path = DEFAULT_CKPT_DIR) -> Path:
     """
     Find checkpoint in priority order:
       1. CKPT_PATH environment variable
-      2. ckpt_dir/best.pt
-      3. ckpt_dir/latest.pt
-      4. Most recently modified *.pt in ckpt_dir
+      2. Checkpoints from plateau period (step 35k-50k) - best quality
+      3. ckpt_dir/best.pt
+      4. ckpt_dir/latest.pt
+      5. Most recently modified *.pt in ckpt_dir
     
     Raises FileNotFoundError with helpful message if none found.
     """
+    # Import torch directly for checkpoint loading
+    import torch
+    
     # 1. Environment variable
     env_ckpt = os.environ.get("CKPT_PATH")
     if env_ckpt:
@@ -112,17 +116,49 @@ def _find_checkpoint(ckpt_dir: Path = DEFAULT_CKPT_DIR) -> Path:
             f"CKPT_PATH environment variable set to '{env_ckpt}' but file does not exist."
         )
 
-    # 2. best.pt
+    # 2. Prefer checkpoints from plateau period (35k-50k steps) - best quality
+    # Training analysis showed quality improved until ~40k-43k, then plateaued
+    # Explicitly check for known best checkpoint first
+    best_plateau_ckpt = ckpt_dir / "best_step40000_backup.pt"
+    if best_plateau_ckpt.exists():
+        try:
+            ckpt = torch.load(best_plateau_ckpt, map_location="cpu", weights_only=False)
+            step = ckpt.get("step", 0)
+            if 35000 <= step <= 50000:
+                return best_plateau_ckpt
+        except Exception:
+            pass
+    
+    # Fallback: search all checkpoints for plateau period
+    if ckpt_dir.exists():
+        plateau_checkpoints = []
+        for pt_file in ckpt_dir.glob("*.pt"):
+            try:
+                ckpt = torch.load(pt_file, map_location="cpu", weights_only=False)
+                step = ckpt.get("step", 0)
+                # Prefer checkpoints around 35k-50k (plateau period)
+                if 35000 <= step <= 50000:
+                    plateau_checkpoints.append((pt_file, step))
+            except Exception:
+                # Silently skip corrupted checkpoints
+                continue
+        
+        if plateau_checkpoints:
+            # Sort by step number, prefer those closer to 43k (plateau point)
+            plateau_checkpoints.sort(key=lambda x: abs(x[1] - 43000))
+            return plateau_checkpoints[0][0]
+
+    # 3. best.pt
     best_pt = ckpt_dir / "best.pt"
     if best_pt.exists():
         return best_pt
 
-    # 3. latest.pt
+    # 4. latest.pt
     latest_pt = ckpt_dir / "latest.pt"
     if latest_pt.exists():
         return latest_pt
 
-    # 4. Most recent *.pt
+    # 5. Most recent *.pt
     if ckpt_dir.exists():
         pt_files = sorted(ckpt_dir.glob("*.pt"), key=lambda p: p.stat().st_mtime, reverse=True)
         if pt_files:
@@ -228,10 +264,197 @@ def _render_synthetic_with_blender(fen: str, viewpoint: str) -> Path:
     )
 
 
-def _translate_image(G, img_path: Path, device) -> Image.Image:
+def _match_training_style(img: Image.Image) -> Image.Image:
+    """
+    Post-process the Blender render to match the training data style.
+    
+    Training synth images have:
+    - Pure black dark squares (very dark, ~50-70)
+    - Higher contrast
+    - More matte appearance (no bright white highlights)
+    
+    Current Blender output has:
+    - Medium gray dark squares (~100-120)
+    - Bright white highlights on pieces
+    - Lower contrast overall
+    
+    This function adjusts levels and contrast to match.
+    """
+    import numpy as np_local
+    from PIL import ImageEnhance
+    
+    # Increase contrast to match training style
+    enhancer = ImageEnhance.Contrast(img)
+    img = enhancer.enhance(1.4)  # Boost contrast
+    
+    # Adjust brightness slightly (training images are darker overall)
+    enhancer = ImageEnhance.Brightness(img)
+    img = enhancer.enhance(0.85)
+    
+    # Apply levels adjustment to deepen the blacks
+    arr = np_local.array(img).astype(np_local.float32)
+    
+    # Stretch the dark values to be darker (like training data)
+    # Input range adjustment: darken darks more aggressively
+    arr = np_local.clip(arr, 0, 255)
+    
+    # Apply gamma correction to deepen midtones and darks
+    arr = 255.0 * np_local.power(arr / 255.0, 1.15)
+    
+    arr = np_local.clip(arr, 0, 255).astype(np_local.uint8)
+    
+    return Image.fromarray(arr)
+
+
+def _apply_sharpening(img: Image.Image, strength: float = 0.3) -> Image.Image:
+    """
+    Apply subtle unsharp masking to enhance details.
+    
+    Args:
+        img: Input PIL Image
+        strength: Sharpening strength (0.0 = no sharpening, 1.0 = maximum)
+    
+    Returns:
+        Sharpened PIL Image
+    """
+    from PIL import ImageFilter
+    
+    # Unsharp mask: enhances edges while preserving smooth areas
+    # Strength controls the intensity
+    if strength <= 0.0:
+        return img
+    
+    # Apply unsharp mask filter
+    # Parameters: radius (blur), percent (strength), threshold (edge detection)
+    sharpened = img.filter(ImageFilter.UnsharpMask(
+        radius=1,  # Small radius for fine details
+        percent=int(100 * strength),  # Convert to percentage
+        threshold=3  # Only sharpen edges, not smooth areas
+    ))
+    
+    # Blend with original to control strength
+    if strength < 1.0:
+        from PIL import Image
+        sharpened = Image.blend(img, sharpened, strength)
+    
+    return sharpened
+
+
+def _apply_default_perspective_transform(img: Image.Image) -> Image.Image:
+    """
+    Apply a default perspective transform to synthetic images to match training data.
+    
+    During training, synthetic images get perspective transforms to match real images.
+    For test positions, we apply a typical perspective (forward tilt + slight side offset)
+    that represents common camera angles in real chess images.
+    """
+    import torchvision.transforms.functional as TF
+    from numpy.linalg import solve
+    
+    w, h = img.size
+    perspective_max_tilt = 0.05  # Same as training
+    
+    # Enlarge by ~25% to accommodate tilt (same as training)
+    scale_factor = 1.25
+    enlarged_w = int(w * scale_factor)
+    enlarged_h = int(h * scale_factor)
+    
+    # Resize to larger size
+    enlarged = TF.resize(img, [enlarged_h, enlarged_w], interpolation=Image.BICUBIC)
+    
+    # Default perspective parameters (typical camera angle)
+    max_shift = int(min(w, h) * perspective_max_tilt)
+    pitch_shift = max_shift * 0.3  # Forward tilt (typical camera position)
+    roll_shift = 0  # Minimal roll
+    side_offset = 0.02 * 0.4 * min(w, h)  # Subtle horizontal offset
+    
+    # Original corners
+    orig_corners = [
+        [0, 0],  # top-left
+        [enlarged_w, 0],  # top-right
+        [enlarged_w, enlarged_h],  # bottom-right
+        [0, enlarged_h],  # bottom-left
+    ]
+    
+    # New corners with perspective distortion
+    new_corners = [
+        [orig_corners[0][0] - roll_shift - side_offset, orig_corners[0][1] - pitch_shift],
+        [orig_corners[1][0] + roll_shift - side_offset, orig_corners[1][1] - pitch_shift],
+        [orig_corners[2][0] + roll_shift + side_offset, orig_corners[2][1] + pitch_shift],
+        [orig_corners[3][0] - roll_shift + side_offset, orig_corners[3][1] + pitch_shift],
+    ]
+    
+    # Compute perspective transform coefficients
+    A = np.zeros((8, 8))
+    b = np.zeros(8)
+    
+    for i, ((x, y), (xp, yp)) in enumerate(zip(orig_corners, new_corners)):
+        A[i*2] = [x, y, 1, 0, 0, 0, -x*xp, -y*xp]
+        b[i*2] = xp
+        A[i*2+1] = [0, 0, 0, x, y, 1, -x*yp, -y*yp]
+        b[i*2+1] = yp
+    
+    try:
+        coeffs = solve(A, b)
+        perspective_coeffs = tuple(coeffs)
+        
+        # Apply perspective transform with brown fill (matches training)
+        brown_color = (101, 67, 33)
+        tilted = enlarged.transform(
+            enlarged.size, Image.PERSPECTIVE, perspective_coeffs,
+            Image.BICUBIC, fillcolor=brown_color
+        )
+        
+        # Center crop back to original size (can crop into brown border)
+        tilted_w, tilted_h = tilted.size
+        target_crop_size = max(w, h)
+        crop_w = min(tilted_w, target_crop_size + int(w * 0.1))
+        crop_h = min(tilted_h, target_crop_size + int(h * 0.1))
+        crop_x = (tilted_w - crop_w) // 2
+        crop_y = (tilted_h - crop_h) // 2
+        crop_x = max(0, min(crop_x, tilted_w - crop_w))
+        crop_y = max(0, min(crop_y, tilted_h - crop_h))
+        
+        cropped = tilted.crop((crop_x, crop_y, crop_x + crop_w, crop_y + crop_h))
+        
+        # Resize to original size
+        return cropped.resize((w, h), Image.BICUBIC)
+    except:
+        # If transform fails, return original
+        return img
+
+
+def _crop_to_board(img: Image.Image) -> Image.Image:
+    """
+    Crop the Blender render using the same 1% border crop as training data.
+    
+    Training data uses synth_v3_cropped which was created by cropping 1% from
+    all edges of 512x512 Blender renders, resulting in ~506x506 images.
+    This function replicates that exact same crop to match training preprocessing.
+    """
+    w, h = img.size
+    
+    # Same 1% crop as training data (crop_synth_images.py with --border-pct 0.01)
+    border_pct = 0.01
+    border_x = int(w * border_pct)
+    border_y = int(h * border_pct)
+    
+    left = border_x
+    top = border_y
+    right = w - border_x
+    bottom = h - border_y
+    
+    cropped = img.crop((left, top, right, bottom))
+    return cropped
+
+
+def _translate_image(G, img_path: Path, device, already_processed: bool = False) -> Image.Image:
     """
     Run generator on a single image.
     Returns PIL Image in RGB.
+    
+    Args:
+        already_processed: If True, skip crop and style matching (image already done)
     """
     _ensure_ml_imports()
     import torchvision.transforms.functional as TF
@@ -239,6 +462,11 @@ def _translate_image(G, img_path: Path, device) -> Image.Image:
     # Load and preprocess
     img = Image.open(img_path).convert("RGB")
     original_size = img.size  # (W, H)
+    
+    # Crop and style match if not already done
+    if not already_processed:
+        img = _crop_to_board(img)
+        img = _match_training_style(img)
 
     # Resize to 256x256 for model (standard Pix2Pix input)
     img_resized = img.resize((256, 256), Image.BICUBIC)
@@ -263,6 +491,10 @@ def _translate_image(G, img_path: Path, device) -> Image.Image:
 
     # Resize back to original resolution
     out_img = out_img.resize(original_size, Image.BICUBIC)
+    
+    # Post-processing: Apply sharpening to enhance piece details
+    # Increased strength for sharper pieces (can increase artifacts if model output is already noisy)
+    out_img = _apply_sharpening(out_img, strength=0.35)
 
     return out_img
 
@@ -320,7 +552,18 @@ def generate_chessboard_image(fen: str, viewpoint: str) -> None:
 
     # Step 1: Render synthetic with Blender
     synth_png = _render_synthetic_with_blender(fen, viewpoint)
-    shutil.copyfile(synth_png, synthetic_out)
+    
+    # Load and preprocess to match training data
+    synth_img = Image.open(synth_png).convert("RGB")
+    synth_img_cropped = _crop_to_board(synth_img)
+    
+    # Apply perspective transform to match training data
+    # During training, synthetic images get perspective transforms to match real images
+    # For test positions, apply a default perspective (typical camera angle)
+    synth_img_tilted = _apply_default_perspective_transform(synth_img_cropped)
+    
+    synth_img_tilted.save(synthetic_out, format="PNG")
+    print(f"[INFO] Applied perspective transform and cropped synthetic image to match training data")
 
     # Step 2: Load generator and translate to realistic
     _ensure_ml_imports()
@@ -330,7 +573,7 @@ def generate_chessboard_image(fen: str, viewpoint: str) -> None:
     print(f"[INFO] Device: {device}")
 
     G = _load_generator(ckpt_path, device)
-    realistic_img = _translate_image(G, synthetic_out, device)
+    realistic_img = _translate_image(G, synthetic_out, device, already_processed=True)
     realistic_img.save(realistic_out, format="PNG")
 
     # Step 3: Create side-by-side

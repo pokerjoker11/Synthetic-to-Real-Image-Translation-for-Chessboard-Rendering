@@ -143,9 +143,9 @@ class UNetGenerator(nn.Module):
         self.d8 = UNetDown(base * 8, base * 8, normalize=False, norm=norm)   # 2 -> 1 (bottleneck)
 
         # Decoder (up)
-        self.u1 = UNetUp(base * 8, base * 8, dropout=0.5, norm=norm, up_mode=up_mode)        # 1 -> 2
-        self.u2 = UNetUp(base * 16, base * 8, dropout=0.5, norm=norm, up_mode=up_mode)       # 2 -> 4
-        self.u3 = UNetUp(base * 16, base * 8, dropout=0.5, norm=norm, up_mode=up_mode)       # 4 -> 8
+        self.u1 = UNetUp(base * 8, base * 8, dropout=0.6, norm=norm, up_mode=up_mode)        # 1 -> 2 (increased from 0.5)
+        self.u2 = UNetUp(base * 16, base * 8, dropout=0.6, norm=norm, up_mode=up_mode)       # 2 -> 4 (increased from 0.5)
+        self.u3 = UNetUp(base * 16, base * 8, dropout=0.6, norm=norm, up_mode=up_mode)       # 4 -> 8 (increased from 0.5)
         self.u4 = UNetUp(base * 16, base * 8, dropout=0.0, norm=norm, up_mode=up_mode)       # 8 -> 16
         self.u5 = UNetUp(base * 16, base * 4, dropout=0.0, norm=norm, up_mode=up_mode)       # 16 -> 32
         self.u6 = UNetUp(base * 8, base * 2, dropout=0.0, norm=norm, up_mode=up_mode)        # 32 -> 64
@@ -195,29 +195,83 @@ class PatchDiscriminator(nn.Module):
     """
     PatchGAN discriminator as in Pix2Pix.
     Takes concatenated (A,B) => predicts patch realism map.
+    
+    Supports:
+    - Spectral normalization for stable training
+    - Feature extraction for feature matching loss
     """
-    def __init__(self, in_ch: int = 3, base: int = 64, norm: str = "instance"):
+    def __init__(self, in_ch: int = 3, base: int = 64, norm: str = "instance", 
+                 use_spectral_norm: bool = False):
         super().__init__()
         # input is concatenation => 2*in_ch channels
         c = in_ch * 2
         norm = (norm or "none").lower()
+        self.use_spectral_norm = use_spectral_norm
+        self.return_features = False  # Set to True to return intermediate features
 
         def block(in_f: int, out_f: int, normalize: bool = True):
             use_norm = normalize and norm != "none"
-            layers = [nn.Conv2d(in_f, out_f, kernel_size=4, stride=2, padding=1, bias=not use_norm)]
+            conv = nn.Conv2d(in_f, out_f, kernel_size=4, stride=2, padding=1, bias=not use_norm)
+            
+            # Apply spectral normalization if requested
+            if use_spectral_norm:
+                try:
+                    from torch.nn.utils import spectral_norm
+                    conv = spectral_norm(conv)
+                except ImportError:
+                    pass  # Fallback if spectral_norm not available
+            
+            layers = [conv]
             if use_norm:
                 layers.append(get_norm(norm, out_f))
             layers.append(nn.LeakyReLU(0.2, inplace=True))
             return layers
 
-        self.model = nn.Sequential(
-            *block(c, base, normalize=False),     # 256 -> 128
-            *block(base, base * 2, normalize=True),      # 128 -> 64
-            *block(base * 2, base * 4, normalize=True),  # 64 -> 32
-            *block(base * 4, base * 8, normalize=True),  # 32 -> 16
-            nn.Conv2d(base * 8, 1, kernel_size=4, stride=1, padding=1)       # 16 -> 15 (patch map)
-        )
+        # Build layers separately for feature extraction
+        self.layer1 = nn.Sequential(*block(c, base, normalize=False))     # 256 -> 128
+        self.layer2 = nn.Sequential(*block(base, base * 2, normalize=True))      # 128 -> 64
+        self.layer3 = nn.Sequential(*block(base * 2, base * 4, normalize=True))  # 64 -> 32
+        self.layer4 = nn.Sequential(*block(base * 4, base * 8, normalize=True))  # 32 -> 16
+        
+        final_conv = nn.Conv2d(base * 8, 1, kernel_size=4, stride=1, padding=1)
+        if use_spectral_norm:
+            try:
+                from torch.nn.utils import spectral_norm
+                final_conv = spectral_norm(final_conv)
+            except ImportError:
+                pass
+        self.final = final_conv
 
-    def forward(self, a: torch.Tensor, b: torch.Tensor) -> torch.Tensor:
+    def forward(self, a: torch.Tensor, b: torch.Tensor, return_features: bool = False):
+        """
+        Args:
+            a: Input image A (synthetic)
+            b: Input image B (real or fake)
+            return_features: If True, return intermediate features and final output
+        
+        Returns:
+            If return_features=False: patch map tensor
+            If return_features=True: tuple of (features_list, patch_map)
+                - features_list: List of intermediate layer outputs
+                - patch_map: Final discriminator output
+        """
         x = torch.cat([a, b], dim=1)
-        return self.model(x)
+        
+        if return_features:
+            # Extract features from intermediate layers
+            feat1 = self.layer1(x)
+            feat2 = self.layer2(feat1)
+            feat3 = self.layer3(feat2)
+            feat4 = self.layer4(feat3)
+            patch_map = self.final(feat4)
+            
+            # Return features from layers 2, 3, 4 (good balance of detail/abstraction)
+            features = [feat2, feat3, feat4]
+            return features, patch_map
+        else:
+            # Standard forward pass
+            x = self.layer1(x)
+            x = self.layer2(x)
+            x = self.layer3(x)
+            x = self.layer4(x)
+            return self.final(x)

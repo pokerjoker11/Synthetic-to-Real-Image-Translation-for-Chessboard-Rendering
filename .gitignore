@@ -22,6 +22,8 @@ checkpoints/
 checkpoints*/
 outputs/
 *.zip
+legacy/
+docs/
 
 # OS junk
 .DS_Store
