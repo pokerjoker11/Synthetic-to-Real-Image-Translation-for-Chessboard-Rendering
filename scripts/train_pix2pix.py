@@ -125,19 +125,29 @@ class VGGPerceptualLoss(nn.Module):
         x = (x + 1) / 2  # [-1,1] -> [0,1]
         return (x - self.mean) / self.std
     
+    def extract_features(self, x):
+        """Return list of VGG feature maps at configured layers.
+
+        Args:
+            x: (N,3,H,W) in [-1,1]
+
+        Returns:
+            feats: list of tensors, one per configured layer
+        """
+        x = self.normalize(x)
+        feats = []
+        h = x
+        for slice_net in self.slices:
+            h = slice_net(h)
+            feats.append(h)
+        return feats
+
     def forward(self, fake, real):
-        fake = self.normalize(fake)
-        real = self.normalize(real)
-        
+        fake_feats = self.extract_features(fake)
+        real_feats = self.extract_features(real)
         loss = 0.0
-        fake_feat = fake
-        real_feat = real
-        
-        for i, slice_net in enumerate(self.slices):
-            fake_feat = slice_net(fake_feat)
-            real_feat = slice_net(real_feat)
-            loss += self.weights[i] * F.l1_loss(fake_feat, real_feat)
-        
+        for w, ff, rf in zip(self.weights, fake_feats, real_feats):
+            loss += w * F.l1_loss(ff, rf)
         return loss
 
 
@@ -231,6 +241,26 @@ def make_weight_map(mask: torch.Tensor, piece_weight: float, bg_weight: float = 
     return bg_weight + (piece_weight - bg_weight) * mask
 
 
+def mask_boundary_band(mask: torch.Tensor, k: int = 7) -> torch.Tensor:
+    """Approximate boundary band around piece mask using morphological gradient.
+
+    mask: (N,1,H,W) float in {0,1}
+
+    Returns:
+        band: (N,1,H,W) float in [0,1] where 1 indicates pixels near the mask boundary
+    """
+    k = int(k)
+    if k < 3:
+        k = 3
+    if k % 2 == 0:
+        k += 1
+    pad = k // 2
+    dil = F.max_pool2d(mask, kernel_size=k, stride=1, padding=pad)
+    ero = 1.0 - F.max_pool2d(1.0 - mask, kernel_size=k, stride=1, padding=pad)
+    band = (dil - ero).clamp(0.0, 1.0)
+    return band
+
+
 def weighted_l1_loss(pred: torch.Tensor, target: torch.Tensor, weight: torch.Tensor) -> torch.Tensor:
     """
     Weighted L1 loss.
@@ -251,30 +281,38 @@ def weighted_l1_loss(pred: torch.Tensor, target: torch.Tensor, weight: torch.Ten
     return weighted_diff.mean()
 
 
-def weighted_perceptual_loss(vgg_loss_fn, pred: torch.Tensor, target: torch.Tensor, 
+def weighted_perceptual_loss(vgg_loss_fn: VGGPerceptualLoss, pred: torch.Tensor, target: torch.Tensor,
                             weight: torch.Tensor) -> torch.Tensor:
-    """
-    Weighted perceptual loss using VGG features.
-    
-    Note: VGG features have different spatial sizes at different layers.
-    We compute loss per pixel at the input resolution and weight it.
-    
+    """Spatially-weighted perceptual loss using VGG features.
+
+    We downsample the (H,W) weight map to each VGG feature map resolution and
+    apply it elementwise before averaging. This makes the perceptual loss
+    actually care more about piece regions (and not just multiply by ~1).
+
     Args:
-        vgg_loss_fn: VGGPerceptualLoss forward function
-        pred: [N, 3, H, W]
-        target: [N, 3, H, W]
-        weight: [N, 1, H, W] - normalized weights (mean ~1)
-    
+        vgg_loss_fn: VGGPerceptualLoss module
+        pred:   (N,3,H,W) in [-1,1]
+        target: (N,3,H,W) in [-1,1]
+        weight: (N,1,H,W) weight map (ideally normalized to mean ~1)
+
     Returns:
-        weighted perceptual loss
+        weighted perceptual loss (scalar)
     """
-    # Compute perceptual loss per layer and aggregate
-    # For simplicity, we weight the final aggregated loss by average weight
-    # More sophisticated: weight at each layer's spatial resolution
-    loss = vgg_loss_fn(pred, target)
-    # Weight by average mask value (normalized weight map should have mean ~1)
-    avg_weight = weight.mean()
-    return loss * avg_weight
+    pred_feats = vgg_loss_fn.extract_features(pred)
+    tgt_feats = vgg_loss_fn.extract_features(target)
+
+    loss = 0.0
+    for w_layer, pf, tf in zip(vgg_loss_fn.weights, pred_feats, tgt_feats):
+        # Downsample weight map to this feature resolution
+        wm = F.interpolate(weight, size=pf.shape[-2:], mode='bilinear', align_corners=False)
+        # Keep magnitudes stable: normalize per-layer to mean ~1
+        wm = wm / (wm.mean() + 1e-8)
+        # Broadcast to channels
+        if wm.shape[1] == 1 and pf.shape[1] > 1:
+            wm = wm.repeat(1, pf.shape[1], 1, 1)
+        diff = torch.abs(pf - tf) * wm
+        loss = loss + w_layer * diff.mean()
+    return loss
 
 
 # ----------------------------
@@ -455,59 +493,71 @@ def load_checkpoint(path: Path, G, D, optG, optD, strict: bool = True) -> tuple[
 
 
 @torch.no_grad()
-def validate_l1(G: nn.Module, dl: DataLoader, device: torch.device, 
+def validate_l1(G: nn.Module, dl: DataLoader, device: torch.device,
                 compute_sharpness: bool = False) -> tuple[float, dict]:
     """
     Validate model and compute L1 loss. Optionally compute piece sharpness metrics.
-    
+
     Returns:
         (mean_l1, metrics_dict) where metrics_dict contains:
-            - 'piece_sharpness': mean Sobel magnitude inside piece regions (if compute_sharpness=True)
-            - 'bg_sharpness': mean Sobel magnitude in background regions (if compute_sharpness=True)
+            - 'piece_sharpness': mean Sobel magnitude inside piece regions for the *generated* image
+            - 'bg_sharpness': mean Sobel magnitude in background regions for the *generated* image
+            - 'real_piece_sharpness': same metric computed on the real target (baseline)
+            - 'real_bg_sharpness': baseline background sharpness
+
+    Note:
+        These sharpness metrics are simple (Sobel magnitude on grayscale). They’re useful
+        for trend monitoring, not as a perfect perceptual score.
     """
     was_training = G.training
     G.eval()
 
-    losses = []
-    piece_sharpness_list = []
-    bg_sharpness_list = []
-    
+    losses: list[float] = []
+    fake_piece_sharpness: list[float] = []
+    fake_bg_sharpness: list[float] = []
+    real_piece_sharpness: list[float] = []
+    real_bg_sharpness: list[float] = []
+
     for batch in dl:
         A = batch["A"].to(device)
         B = batch["B"].to(device)
         fake_B = G(A)
         losses.append(F.l1_loss(fake_B, B).item())
-        
-        # Compute piece sharpness if requested
-        if compute_sharpness and "mask" in batch:
-            mask = batch["mask"].to(device)  # [N, 1, H, W]
-            # Convert to grayscale and compute Sobel magnitude
-            fake_gray = to_grayscale(fake_B)  # [N, 1, H, W]
-            sobel_mag = sobel(fake_gray)  # [N, 1, H, W]
-            
-            # Sharpness = mean Sobel magnitude inside piece regions
-            piece_mask = (mask > 0.5).float()  # [N, 1, H, W]
+
+        if compute_sharpness and ("mask" in batch):
+            mask = batch["mask"].to(device)  # [N,1,H,W]
+
+            piece_mask = (mask > 0.5).float()
             bg_mask = (mask <= 0.5).float()
-            
-            # Compute mean sharpness in piece and background regions
+
             piece_pixels = piece_mask.sum() + 1e-8
             bg_pixels = bg_mask.sum() + 1e-8
-            
-            piece_sharp = (sobel_mag * piece_mask).sum() / piece_pixels
-            bg_sharp = (sobel_mag * bg_mask).sum() / bg_pixels
-            
-            piece_sharpness_list.append(piece_sharp.item())
-            bg_sharpness_list.append(bg_sharp.item())
-    
-    metrics = {}
-    if compute_sharpness and piece_sharpness_list:
-        metrics['piece_sharpness'] = float(np.mean(piece_sharpness_list))
-        metrics['bg_sharpness'] = float(np.mean(bg_sharpness_list))
+
+            sobel_fake = sobel(to_grayscale(fake_B))
+            sobel_real = sobel(to_grayscale(B))
+
+            fake_piece = (sobel_fake * piece_mask).sum() / piece_pixels
+            fake_bg = (sobel_fake * bg_mask).sum() / bg_pixels
+            real_piece = (sobel_real * piece_mask).sum() / piece_pixels
+            real_bg = (sobel_real * bg_mask).sum() / bg_pixels
+
+            fake_piece_sharpness.append(float(fake_piece.item()))
+            fake_bg_sharpness.append(float(fake_bg.item()))
+            real_piece_sharpness.append(float(real_piece.item()))
+            real_bg_sharpness.append(float(real_bg.item()))
+
+    metrics: dict = {}
+    if compute_sharpness and fake_piece_sharpness:
+        metrics["piece_sharpness"] = float(__import__("numpy").mean(fake_piece_sharpness))
+        metrics["bg_sharpness"] = float(__import__("numpy").mean(fake_bg_sharpness))
+    if compute_sharpness and real_piece_sharpness:
+        metrics["real_piece_sharpness"] = float(__import__("numpy").mean(real_piece_sharpness))
+        metrics["real_bg_sharpness"] = float(__import__("numpy").mean(real_bg_sharpness))
 
     if was_training:
         G.train()
 
-    mean_l1 = float(np.mean(losses)) if losses else float("nan")
+    mean_l1 = float(__import__("numpy").mean(losses)) if losses else float("nan")
     return mean_l1, metrics
 
 
@@ -557,6 +607,10 @@ def main() -> None:
                    help="Enable piece mask weighting for losses")
     ap.add_argument("--piece_weight", type=float, default=6.0,
                    help="Weight multiplier for piece pixels in losses (default: 6.0)")
+    ap.add_argument("--piece_edge_weight", type=float, default=0.0,
+                   help="Extra weight for pixels near piece-mask boundaries (0 disables). Typical: 10-20.")
+    ap.add_argument("--piece_edge_width", type=int, default=7,
+                   help="Kernel size for boundary band (odd int, default: 7).")
     ap.add_argument("--use_piece_D", action="store_true",
                    help="Use additional piece-patch discriminator")
     ap.add_argument("--piece_crop_size", type=int, default=96,
@@ -573,6 +627,22 @@ def main() -> None:
                    help="Additional VGG perceptual loss on piece patches (0 disables)")
     ap.add_argument("--r1_gamma", type=float, default=0.0,
                    help="R1 regularization weight for discriminator (0 disables, default: 0.0)")
+
+    # Option 1: refine piece mask on-the-fly using real-image edges (spill-aware)
+    ap.add_argument("--refine_real_mask", action="store_true",
+                   help="Refine coarse piece masks using real-image edges (spill-aware).")
+    ap.add_argument("--refine_quantile", type=float, default=0.85,
+                   help="Edge quantile used for centroiding (higher = tighter, default: 0.85).")
+    ap.add_argument("--refine_sigma", type=float, default=8.0,
+                   help="Gaussian sigma in pixels for refined mask (default: 8.0).")
+    ap.add_argument("--refine_border", type=int, default=2,
+                   help="Ignore this many pixels from square borders when estimating edges (default: 2).")
+    ap.add_argument("--refine_strength", type=float, default=1.0,
+                   help="Blend strength between coarse and refined mask (0=coarse, 1=refined).")
+    ap.add_argument("--refine_occ_thr", type=float, default=0.08,
+                   help="Per-square MEAN mask threshold for occupancy (default: 0.08).")
+    ap.add_argument("--refine_spill_px", type=int, default=8,
+                   help="Allow refined mask to spill this many pixels outside occupied squares (default: 8).")
 
     ap.add_argument("--max_steps", type=int, default=5000)
     ap.add_argument("--log_every", type=int, default=50)
@@ -603,6 +673,13 @@ def main() -> None:
         load_size=args.load_size,
         piece_mask_dir=args.piece_mask_dir,
         use_piece_mask=args.use_piece_mask,
+        refine_real_mask=args.refine_real_mask,
+        refine_quantile=args.refine_quantile,
+        refine_sigma=args.refine_sigma,
+        refine_border=args.refine_border,
+        refine_strength=args.refine_strength,
+        refine_occ_thr=args.refine_occ_thr,
+        refine_spill_px=args.refine_spill_px,
     )
     ds_val = PairedChessDataset(
         args.val_csv,
@@ -613,6 +690,13 @@ def main() -> None:
         load_size=args.load_size,
         piece_mask_dir=args.piece_mask_dir,
         use_piece_mask=args.use_piece_mask,
+        refine_real_mask=args.refine_real_mask,
+        refine_quantile=args.refine_quantile,
+        refine_sigma=args.refine_sigma,
+        refine_border=args.refine_border,
+        refine_strength=args.refine_strength,
+        refine_occ_thr=args.refine_occ_thr,
+        refine_spill_px=args.refine_spill_px,
     )
 
     dl_train = DataLoader(
@@ -653,6 +737,8 @@ def main() -> None:
         print(f"[INFO] Feature matching loss enabled (weight={args.lambda_feature_match})")
     if args.use_piece_mask:
         print(f"[INFO] Piece mask weighting enabled (piece_weight={args.piece_weight})")
+        if args.refine_real_mask:
+            print(f"[INFO] Option1 mask refinement enabled (spill_px={args.refine_spill_px}, occ_thr={args.refine_occ_thr}, sigma={args.refine_sigma}, q={args.refine_quantile})")
     if args.use_piece_D:
         print(f"[INFO] Piece-patch discriminator enabled (crop_size={args.piece_crop_size}, patches={args.piece_patches_per_image})")
     if args.gan_loss == "hinge":
@@ -699,7 +785,7 @@ def main() -> None:
 
     step = 0
     best_val = float("inf")
-    best_piece_ratio = float("-inf")
+    best_piece_delta = float("-inf")
 
     # Determine which checkpoint to resume from
     resume_path = None
@@ -857,6 +943,13 @@ def main() -> None:
             # Create weight map for piece-focused losses
             if args.use_piece_mask:
                 weight_map = make_weight_map(mask, args.piece_weight, bg_weight=1.0)
+
+                # Optional: emphasize mask boundaries (helps crisp silhouettes)
+                if args.piece_edge_weight and args.piece_edge_weight > 0:
+                    # boost boundary pixels instead of replacing
+                    band = mask_boundary_band(mask, k=args.piece_edge_width)
+                    weight_map = weight_map * (1.0 + args.piece_edge_weight * band)
+
                 # Normalize weights to keep loss magnitudes stable (mean ~1)
                 weight_map_norm = weight_map / (weight_map.mean() + 1e-8)
             else:
@@ -987,11 +1080,17 @@ def main() -> None:
             mean_l1, metrics = validate_l1(G, dl_val, device, compute_sharpness=args.use_piece_mask)
             msg = f"[VAL] step={step} mean_L1={mean_l1:.4f}"
             if args.use_piece_mask and 'piece_sharpness' in metrics:
-                piece_sharp = metrics['piece_sharpness']
-                bg_sharp = metrics['bg_sharpness']
-                ratio = piece_sharp / (bg_sharp + 1e-8)
+                piece_sharp = float(metrics['piece_sharpness'])
+                bg_sharp = float(metrics['bg_sharpness'])
                 delta = piece_sharp - bg_sharp
-                msg += f" piece_sharp={piece_sharp:.4f} bg_sharp={bg_sharp:.4f} ratio={ratio:.4f} delta={delta:.4f}"
+                msg += f" piece_sharp={piece_sharp:.6f} bg_sharp={bg_sharp:.6f} delta={delta:.6f}"
+
+                # Show target sharpness too (helps diagnose 'model still blurrier than GT')
+                if 'real_piece_sharpness' in metrics and 'real_bg_sharpness' in metrics:
+                    rp = float(metrics['real_piece_sharpness'])
+                    rb = float(metrics['real_bg_sharpness'])
+                    gt_delta = rp - rb
+                    msg += f" | GT_piece={rp:.4f} GT_bg={rb:.4f} GT_delta={gt_delta:.4f}"
             print(msg)
 
             # Always save latest
@@ -1003,15 +1102,15 @@ def main() -> None:
                 save_checkpoint(ckpt_best, step, best_val, G, D, optG, optD)
                 print(f"[OK] new best checkpoint: {ckpt_best} (best_val={best_val:.4f})")
 
-            # Save best by piece sharpness ratio (piece sharper than background)
+            # Save best by delta = piece_sharp - bg_sharp (stable, no epsilon blow-ups)
             if args.use_piece_mask and ('piece_sharpness' in metrics):
-                piece_sharp = metrics.get('piece_sharpness', 0.0)
-                bg_sharp = metrics.get('bg_sharpness', 0.0)
-                ratio = float(piece_sharp) / (float(bg_sharp) + 1e-8)
-                if ratio > best_piece_ratio:
-                    best_piece_ratio = ratio
+                piece_sharp = float(metrics.get('piece_sharpness', 0.0))
+                bg_sharp = float(metrics.get('bg_sharpness', 0.0))
+                delta = piece_sharp - bg_sharp
+                if delta > best_piece_delta:
+                    best_piece_delta = delta
                     save_checkpoint(ckpt_best_piece, step, best_val, G, D, optG, optD)
-                    print(f"[OK] new best piece checkpoint: {ckpt_best_piece} (best_ratio={best_piece_ratio:.4f})")
+                    print(f"[OK] new best piece checkpoint: {ckpt_best_piece} (best_delta={best_piece_delta:.4f})")
 
     # Final save
     save_checkpoint(ckpt_latest, step, best_val, G, D, optG, optD)

@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Dict, Any, Optional, Tuple, Tuple
 
 import torch
+import torch.nn.functional as F
 from torch.utils.data import Dataset
 from PIL import Image, ImageEnhance, ImageFilter
 import torchvision.transforms.functional as TF
@@ -50,6 +51,15 @@ class PairedChessDataset(Dataset):
         # Piece mask parameters
         piece_mask_dir: Optional[str | Path] = None,
         use_piece_mask: bool = False,
+        # Option 1: refine coarse square masks using edges in the *real* image
+        refine_real_mask: bool = False,
+        refine_quantile: float = 0.85,
+        refine_sigma: float = 8.0,
+        refine_border: int = 2,
+        refine_strength: float = 1.0,
+        refine_occ_thr: float = 0.08,
+        refine_spill_px: int = 8,
+
     ):
         self.csv_path = Path(csv_path)
         self.repo_root = Path(repo_root)
@@ -76,6 +86,24 @@ class PairedChessDataset(Dataset):
         # Piece mask support
         self.piece_mask_dir = Path(piece_mask_dir).resolve() if piece_mask_dir else None
         self.use_piece_mask = bool(use_piece_mask) and (self.piece_mask_dir is not None)
+
+        # Option 1 (mask refinement): shift attention inside each occupied square toward
+        # the actual piece pixels, using real-image edges.
+        self.refine_real_mask = bool(refine_real_mask)
+        self.refine_quantile = float(refine_quantile)
+        self.refine_sigma = float(refine_sigma)
+        self.refine_border = int(refine_border)
+        self.refine_strength = float(refine_strength)
+        self.refine_occ_thr = float(refine_occ_thr)
+        self.refine_spill_px = int(refine_spill_px)
+
+        # Sobel kernels (dataset runs on CPU)
+        self._sobel_kx = torch.tensor(
+            [[-1.0, 0.0, 1.0], [-2.0, 0.0, 2.0], [-1.0, 0.0, 1.0]], dtype=torch.float32
+        ).view(1, 1, 3, 3)
+        self._sobel_ky = torch.tensor(
+            [[-1.0, -2.0, -1.0], [0.0, 0.0, 0.0], [1.0, 2.0, 1.0]], dtype=torch.float32
+        ).view(1, 1, 3, 3)
 
         self.rows = self._read_rows(self.csv_path)
 
@@ -191,21 +219,197 @@ class PairedChessDataset(Dataset):
         img = Image.open(path)
         return img.convert("RGB")
     
-    def _load_piece_mask(self, synth_path: Path) -> Optional[Image.Image]:
-        """Load piece mask if available. Mask file has same stem as synthetic image."""
-        if not self.use_piece_mask or self.piece_mask_dir is None:
+    def _load_piece_mask(self, real_path: Path, synth_path: Path) -> Optional[Image.Image]:
+        """Load piece mask if available.
+        Supports either:
+        - synth-stem masks: {synth_stem}.png
+        - real-stem masks:  {real_stem}.png   (recommended, stable)
+        """
+        if (not self.use_piece_mask) or (self.piece_mask_dir is None):
             return None
-        
-        # Get mask path: same stem as synth image in piece_mask_dir
-        mask_stem = synth_path.stem
-        mask_path = self.piece_mask_dir / f"{mask_stem}.png"
-        
-        if not mask_path.exists():
-            return None
-        
-        # Load as grayscale (single channel)
-        mask_img = Image.open(mask_path).convert("L")
-        return mask_img
+
+        candidates = [
+            self.piece_mask_dir / f"{real_path.stem}.png",
+            self.piece_mask_dir / f"{synth_path.stem}.png",
+            self.piece_mask_dir / f"{real_path.name}",  # if someone saved masks as .jpg (rare)
+        ]
+
+        for mp in candidates:
+            if mp.exists():
+                return Image.open(mp).convert("L")
+
+        return None
+
+
+
+
+    def _sobel_mag(self, gray01: torch.Tensor) -> torch.Tensor:
+        """Sobel gradient magnitude.
+
+        Args:
+            gray01: (H,W) float in [0,1]
+
+        Returns:
+            (H,W) gradient magnitude
+        """
+        x = gray01.unsqueeze(0).unsqueeze(0)
+        gx = F.conv2d(x, self._sobel_kx, padding=1)
+        gy = F.conv2d(x, self._sobel_ky, padding=1)
+        return torch.sqrt(gx * gx + gy * gy + 1e-12)[0, 0]
+    def _refine_mask_edges(self, real_t: torch.Tensor, synth_t: torch.Tensor, mask_t: torch.Tensor) -> torch.Tensor:
+        """Refine a coarse square-occupancy mask using real-image edges, with spill support.
+
+        The coarse mask tells you which squares contain pieces (from FEN). In real images, due to
+        camera angle and piece height, visible piece pixels can spill into neighboring squares.
+
+        This refinement:
+        1) Builds a clean 8x8 occupancy grid from the coarse mask using per-square *mean* coverage
+           (prevents a single leaked pixel from marking an empty square as occupied).
+        2) Rasterizes occupied squares into an "allowed" pixel region and dilates it by
+           refine_spill_px pixels to include projected spillover.
+        3) For each occupied square, estimates a center-of-mass of strong edge pixels and places
+           a soft Gaussian around it *over the expanded ROI*, then clips to the allowed region.
+
+        Args:
+            real_t:  (3,H,W) in [-1,1]
+            synth_t: (3,H,W) in [-1,1] (not used currently, kept for future Option 2 alignment)
+            mask_t:  (1,H,W) binary coarse mask
+
+        Returns:
+            refined mask: (1,H,W) in [0,1]
+        """
+        H, W = int(mask_t.shape[-2]), int(mask_t.shape[-1])
+        if H < 8 or W < 8:
+            return mask_t
+
+        # grayscale in [0,1]
+        real01 = (real_t + 1.0) * 0.5
+        if real01.shape[0] == 3:
+            gray = 0.299 * real01[0] + 0.587 * real01[1] + 0.114 * real01[2]
+        else:
+            gray = real01.mean(dim=0)
+        gray = gray.clamp(0.0, 1.0)
+
+        grad = self._sobel_mag(gray)
+
+        # 8x8 grid params
+        sq_h = max(1, H // 8)
+        sq_w = max(1, W // 8)
+        border = max(0, min(self.refine_border, min(sq_h, sq_w) // 4))
+        sigma = max(1.0, float(self.refine_sigma))
+        q = float(self.refine_quantile)
+        q = min(max(q, 0.5), 0.99)
+
+        spill = max(0, int(getattr(self, 'refine_spill_px', 0)))
+        occ_thr = float(getattr(self, 'refine_occ_thr', 0.08))
+
+        m = mask_t[0].float()
+
+        # --- per-square occupancy grid using MEAN (robust to tiny leaks) ---
+        occ = torch.zeros((8, 8), dtype=torch.float32)
+        for r in range(8):
+            y0 = r * sq_h
+            y1 = (r + 1) * sq_h if r < 7 else H
+            for c in range(8):
+                x0 = c * sq_w
+                x1 = (c + 1) * sq_w if c < 7 else W
+                sq = m[y0:y1, x0:x1]
+                if sq.numel() == 0:
+                    continue
+                if float(sq.mean().item()) >= occ_thr:
+                    occ[r, c] = 1.0
+
+        # --- allowed region: exact occupied squares, then pixel-dilate by spill ---
+        allowed = torch.zeros((H, W), dtype=torch.float32)
+        for r in range(8):
+            y0 = r * sq_h
+            y1 = (r + 1) * sq_h if r < 7 else H
+            for c in range(8):
+                if float(occ[r, c].item()) < 0.5:
+                    continue
+                x0 = c * sq_w
+                x1 = (c + 1) * sq_w if c < 7 else W
+                allowed[y0:y1, x0:x1] = 1.0
+
+        if spill > 0:
+            k = 2 * spill + 1
+            allowed = F.max_pool2d(allowed.unsqueeze(0).unsqueeze(0), kernel_size=k, stride=1, padding=spill)[0, 0]
+
+        refined = torch.zeros_like(mask_t)
+
+        # --- refine each occupied square, but paste over expanded ROI ---
+        for r in range(8):
+            y0 = r * sq_h
+            y1 = (r + 1) * sq_h if r < 7 else H
+            for c in range(8):
+                if float(occ[r, c].item()) < 0.5:
+                    continue
+
+                x0 = c * sq_w
+                x1 = (c + 1) * sq_w if c < 7 else W
+
+                # expanded ROI for spill
+                ry0 = max(0, y0 - spill)
+                ry1 = min(H, y1 + spill)
+                rx0 = max(0, x0 - spill)
+                rx1 = min(W, x1 + spill)
+
+                # inner region inside the ORIGINAL square (avoid board lines)
+                y0i = max(ry0, y0 + border)
+                y1i = min(ry1, y1 - border)
+                x0i = max(rx0, x0 + border)
+                x1i = min(rx1, x1 - border)
+
+                # fallback: square center
+                cy = (y0 + y1 - 1) * 0.5
+                cx = (x0 + x1 - 1) * 0.5
+
+                if (y1i > y0i) and (x1i > x0i):
+                    g = grad[y0i:y1i, x0i:x1i].clamp_min(0.0)
+                    flat = g.flatten()
+                    if flat.numel() > 0 and float(flat.sum().item()) > 1e-8:
+                        k_top = int(max(1, round(flat.numel() * (1.0 - q))))
+                        vals, _ = torch.topk(flat, k_top, largest=True)
+                        thr = vals.min()
+                        w = g * (g >= thr).float()
+                        sw = w.sum()
+                        if float(sw.item()) > 1e-8:
+                            yy = torch.arange(y0i, y1i, dtype=torch.float32)
+                            xx = torch.arange(x0i, x1i, dtype=torch.float32)
+                            try:
+                                YY, XX = torch.meshgrid(yy, xx, indexing='ij')
+                            except TypeError:
+                                YY, XX = torch.meshgrid(yy, xx)
+                            cy = float((YY * w).sum().item() / sw.item())
+                            cx = float((XX * w).sum().item() / sw.item())
+
+                # Gaussian over expanded ROI
+                ys = torch.arange(ry0, ry1, dtype=torch.float32)
+                xs = torch.arange(rx0, rx1, dtype=torch.float32)
+                try:
+                    YY2, XX2 = torch.meshgrid(ys, xs, indexing='ij')
+                except TypeError:
+                    YY2, XX2 = torch.meshgrid(ys, xs)
+
+                gauss = torch.exp(-((YY2 - cy) ** 2 + (XX2 - cx) ** 2) / (2.0 * sigma * sigma))
+                gauss = gauss / gauss.max().clamp_min(1e-6)
+
+                refined[0, ry0:ry1, rx0:rx1] = torch.maximum(refined[0, ry0:ry1, rx0:rx1], gauss)
+
+        # clip to allowed region (prevents far-away empty squares)
+        refined = refined * allowed.unsqueeze(0)
+
+        strength = float(self.refine_strength)
+        strength = min(max(strength, 0.0), 1.0)
+        if strength >= 0.999:
+            out = refined
+        elif strength <= 1e-6:
+            out = mask_t
+        else:
+            out = (1.0 - strength) * mask_t + strength * refined
+
+        return out.clamp(0.0, 1.0)
+
 
     def _resolve(self, rel_or_abs: str) -> Path:
         # CSVs may contain Windows-style backslashes; normalize for cross-platform use
@@ -230,7 +434,7 @@ class PairedChessDataset(Dataset):
         synth_img = self._open_rgb(synth_path)
         
         # Load piece mask (optional)
-        mask_img = self._load_piece_mask(synth_path)
+        mask_img = self._load_piece_mask(real_path, synth_path)
 
         # Resize to a common "load_size"
         real_img = TF.resize(real_img, [self.load_size, self.load_size], interpolation=Image.BICUBIC)
@@ -273,158 +477,7 @@ class PairedChessDataset(Dataset):
                 if mask_img is not None:
                     mask_img = TF.hflip(mask_img)
             
-            # Enhanced augmentation (applied after crop to save computation)
-            # Perspective transform: detect tilt in real image and match it in synthetic
-            # Note: Horizontal flip (above) already provides black/white perspective variation
-            # We match the detected perspective for consistency, but can add small random variation
-            # Detect tilt from real image and apply matching transform to synthetic
-            real_perspective = self._estimate_perspective_from_image(real_img)
-            
-            # Apply perspective if detected
-            # Option 1: Always match exactly (most consistent)
-            # Option 2: Match with small random variation (more diversity, still aligned)
-            # Currently using Option 1 - always match exactly for best alignment
-            if real_perspective is not None:
-                # Real image has perspective tilt - apply matching tilt to synthetic
-                pitch_shift, roll_shift, side_offset = real_perspective
-                
-                # Optional: Add small random variation (±10%) to detected perspective for diversity
-                # This maintains alignment while adding slight variation
-                # Uncomment to enable:
-                # variation_factor = rng.uniform(0.9, 1.1)  # ±10% variation
-                # pitch_shift *= variation_factor
-                # side_offset *= variation_factor
-                
-                # Apply perspective transform to synthetic image only
-                # Real images already have natural camera tilt, so we don't transform them
-                w, h = synth_img.size
-                # Enlarge by ~25% to accommodate tilt and ensure full board fits without borders
-                scale_factor = 1.25
-                enlarged_w = int(w * scale_factor)
-                enlarged_h = int(h * scale_factor)
-                
-                # Resize synthetic to larger size (bicubic for quality)
-                # Real image stays unchanged
-                synth_enlarged = TF.resize(synth_img, [enlarged_h, enlarged_w], interpolation=Image.BICUBIC)
-                
-                # Original corners (source points)
-                orig_corners = [
-                    [0, 0],  # top-left
-                    [enlarged_w, 0],  # top-right
-                    [enlarged_w, enlarged_h],  # bottom-right
-                    [0, enlarged_h],  # bottom-left
-                ]
-                
-                # New corners with perspective distortion (destination points)
-                # Combine pitch/roll tilt + horizontal offset
-                # Horizontal offset creates asymmetric perspective: one side shifts more than opposite side
-                new_corners = [
-                    # Top-left: combine pitch, roll, and side offset
-                    [orig_corners[0][0] - roll_shift - side_offset, orig_corners[0][1] - pitch_shift],
-                    # Top-right: combine pitch, roll, and side offset (opposite direction)
-                    [orig_corners[1][0] + roll_shift - side_offset, orig_corners[1][1] - pitch_shift],
-                    # Bottom-right: same pattern, pitch moves down
-                    [orig_corners[2][0] + roll_shift + side_offset, orig_corners[2][1] + pitch_shift],
-                    # Bottom-left: same pattern
-                    [orig_corners[3][0] - roll_shift + side_offset, orig_corners[3][1] + pitch_shift],
-                ]
-                
-                # Compute perspective transform coefficients from 4 point pairs
-                # PIL PERSPECTIVE mode: maps (x,y) -> ((ax+by+c)/(gx+hy+1), (dx+ey+f)/(gx+hy+1))
-                try:
-                    from numpy.linalg import solve
-                    
-                    A = np.zeros((8, 8))
-                    b = np.zeros(8)
-                    
-                    for i, ((x, y), (xp, yp)) in enumerate(zip(orig_corners, new_corners)):
-                        # First equation: xp = (ax + by + c) / (gx + hy + 1) => xp*(gx + hy + 1) = ax + by + c
-                        # Rearranged: ax + by + c - gx*xp - hy*xp = xp
-                        A[i*2] = [x, y, 1, 0, 0, 0, -x*xp, -y*xp]
-                        b[i*2] = xp
-                        # Second equation: yp = (dx + ey + f) / (gx + hy + 1) => yp*(gx + hy + 1) = dx + ey + f
-                        # Rearranged: dx + ey + f - gx*yp - hy*yp = yp
-                        A[i*2+1] = [0, 0, 0, x, y, 1, -x*yp, -y*yp]
-                        b[i*2+1] = yp
-                    
-                    try:
-                        coeffs = solve(A, b)
-                        perspective_coeffs = tuple(coeffs)
-                        
-                        # Apply perspective transform
-                        # Use brown fill color to match synthetic chess set's brown outer frame
-                        # Apply perspective transform ONLY to synthetic image
-                        # Real image already has correct perspective - keep it unchanged
-                        brown_color = (101, 67, 33)  # Brown that matches chess set outer frame
-                        
-                        # Transform only synthetic image with brown fill
-                        synth_tilted = synth_enlarged.transform(
-                            synth_enlarged.size, Image.PERSPECTIVE, perspective_coeffs,
-                            Image.BICUBIC, fillcolor=brown_color
-                        )
-                        
-                        # Apply same perspective transform to mask if present (use black fill = 0 for background)
-                        if mask_img is not None:
-                            mask_enlarged = TF.resize(mask_img, [enlarged_h, enlarged_w], interpolation=Image.NEAREST)
-                            mask_tilted = mask_enlarged.transform(
-                                mask_enlarged.size, Image.PERSPECTIVE, perspective_coeffs,
-                                Image.NEAREST, fillcolor=0  # Black = background in mask
-                            )
-                        
-                        # Crop/Resize strategy: ensure board area fits in synthetic, brown border can be cropped if needed
-                        # Real image stays unchanged - it already has the correct perspective
-                        
-                        # Crop synthetic image from center (can crop into brown border, but board must fit)
-                        tilted_w, tilted_h = synth_tilted.size
-                        
-                        # Calculate crop bounds: center crop with margin for board
-                        target_crop_size = max(w, h)  # At least target size
-                        crop_w = min(tilted_w, target_crop_size + int(w * 0.1))  # 10% extra margin
-                        crop_h = min(tilted_h, target_crop_size + int(h * 0.1))
-                        
-                        # Center crop (we can crop into brown border, but board should still fit)
-                        crop_x = (tilted_w - crop_w) // 2
-                        crop_y = (tilted_h - crop_h) // 2
-                        crop_x = max(0, min(crop_x, tilted_w - crop_w))
-                        crop_y = max(0, min(crop_y, tilted_h - crop_h))
-                        
-                        # Crop synthetic to board area (may crop some brown border)
-                        synth_cropped = TF.crop(synth_tilted, crop_y, crop_x, crop_h, crop_w)
-                        if mask_img is not None:
-                            mask_cropped = TF.crop(mask_tilted, crop_y, crop_x, crop_h, crop_w)
-                        
-                        # Resize synthetic to exact target size
-                        # Real image is already at target size, no changes needed
-                        synth_img = TF.resize(synth_cropped, [h, w], interpolation=Image.BICUBIC)
-                        if mask_img is not None:
-                            mask_img = TF.resize(mask_cropped, [h, w], interpolation=Image.NEAREST)
-                        # real_img stays unchanged
-                    except (np.linalg.LinAlgError, ValueError):
-                        # If solve fails or transform invalid, skip perspective (keep original)
-                        pass
-                except ImportError:
-                    # Fallback: skip perspective if numpy not available
-                    pass
-            
-            # Color jitter on synthetic only (simulate lighting variations)
-            # This helps model learn to handle different lighting conditions
-            if rng.random() < self.color_jitter_prob:
-                # Apply subtle color variations (brightness, contrast, saturation)
-                jitter = rng.uniform(1.0 - self.color_jitter_strength, 1.0 + self.color_jitter_strength)
-                synth_img = ImageEnhance.Brightness(synth_img).enhance(jitter)
-                jitter = rng.uniform(1.0 - self.color_jitter_strength * 0.5, 1.0 + self.color_jitter_strength * 0.5)
-                synth_img = ImageEnhance.Contrast(synth_img).enhance(jitter)
-                # Add saturation variation (simulates different lighting color temperatures)
-                jitter = rng.uniform(1.0 - self.color_jitter_strength * 0.3, 1.0 + self.color_jitter_strength * 0.3)
-                synth_img = ImageEnhance.Color(synth_img).enhance(jitter)
-        else:
-            # Center crop for val
-            real_img = TF.center_crop(real_img, [self.image_size, self.image_size])
-            synth_img = TF.center_crop(synth_img, [self.image_size, self.image_size])
-            if mask_img is not None:
-                mask_img = TF.center_crop(mask_img, [self.image_size, self.image_size])
 
-        # To tensor in [0,1]
         real_t = TF.to_tensor(real_img)
         synth_t = TF.to_tensor(synth_img)
         
@@ -446,10 +499,14 @@ class PairedChessDataset(Dataset):
             # Default to all ones (no weighting)
             mask_t = torch.ones((1, self.image_size, self.image_size), dtype=torch.float32)
 
+        # Option 1: refine coarse square mask using real-image edges
+        if self.use_piece_mask and self.refine_real_mask and (mask_img is not None):
+            mask_t = self._refine_mask_edges(real_t, synth_t, mask_t)
+
         return {
             "A": synth_t,  # input
             "B": real_t,   # target
-            "mask": mask_t,  # piece mask [1, H, W] in {0, 1}
+            "mask": mask_t,  # piece weight mask [1, H, W] in [0, 1]
             "fen": row.fen,
             "viewpoint": row.viewpoint,
             "game": row.game,

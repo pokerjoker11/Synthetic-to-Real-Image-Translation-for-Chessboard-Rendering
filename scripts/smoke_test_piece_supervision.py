@@ -300,7 +300,7 @@ def test_validation_sharpness():
 
 def main():
     parser = argparse.ArgumentParser(description="Smoke test for piece-focused supervision")
-    parser.add_argument("--train_csv", type=str, default="data/splits_rect/train_clean.csv",
+    parser.add_argument("--train_csv", type=str, default=None,
                        help="Training CSV for dataset tests")
     parser.add_argument("--piece_mask_dir", type=str, default=None,
                        help="Piece mask directory (optional)")
