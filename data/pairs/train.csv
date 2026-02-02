@@ -1,0 +1,518 @@
+real,synth,fen,viewpoint
+data/real/images/game6_frame_029716.jpg,data/synth/images/row000000_white_4fdc8e8c.png,7q/3b2k1/2p1pn2/pP1p1pN1/3P1Pp1/1PPBP1P1/1K4Q1/8,white
+data/real/images/game6_frame_008644.jpg,data/synth/images/row000009_white_36c085cc.png,r7/pbpn2k1/1p1qp3/3p1p2/3P2p1/2P1PN2/PPQ1BPP1/2K4R,white
+data/real/images_rot180/game6_frame_005384_rot180.jpg,data/synth/images/row000019_black_c758af8f.png,rn5r/pbp3k1/1p1qp3/3p1ppB/3P4/2P1P3/PPQN1PPP/R3K2R,black
+data/real/images_rot180/game6_frame_020708_rot180.jpg,data/synth/images/row000023_black_b7aa7408.png,8/p1pq2k1/1pb1pn2/3p1pN1/3P1Pp1/2PBP1P1/PP5Q/2K5,black
+data/real/images_rot180/game6_frame_001100_rot180.jpg,data/synth/images/row000029_black_9affd40f.png,rn1q1rk1/pbp2ppp/1p1bpn2/3p4/3P4/2P1PNB1/PP1N1PPP/R2QKB1R,black
+data/real/images/game6_frame_017664.jpg,data/synth/images/row000035_white_12e84edf.png,r7/p1p3k1/1pbqpn2/3p1pN1/3P1Pp1/2PBP3/PPQ3P1/2K4R,white
+data/real/images_rot180/game6_frame_003248_rot180.jpg,data/synth/images/row000047_black_7a23c5f3.png,rn1q1rk1/pbp3pp/1p1bpp2/3p4/3P3B/2PBPN2/PPQn1PPP/R3K2R,black
+data/real/images/game6_frame_000788.jpg,data/synth/images/row000054_white_922ef517.png,rnbqkb1r/ppp2ppp/4pn2/3p4/3P1B2/4P3/PPPN1PPP/R2QKBNR,white
+data/real/images/game6_frame_023292.jpg,data/synth/images/row000057_white_0a4f7cab.png,4q3/p1pb2k1/1p2pn2/3p1pN1/3P1Pp1/1PPBP1P1/PK2Q3/8,white
+data/real/images/game6_frame_027248.jpg,data/synth/images/row000067_white_0bda12c9.png,4q3/3b2k1/1pp1p3/p2p1pNn/P2P1PpQ/1PPBP1P1/1K6/8,white
+data/real/images_rot180/game6_frame_032832_rot180.jpg,data/synth/images/row000082_black_f1f00dd8.png,8/3b2k1/4pn2/5pN1/ppBP1Pp1/1P2q1P1/K7/7Q,black
+data/real/images/game6_frame_002000.jpg,data/synth/images/row000092_white_0cb21328.png,rn1q1rk1/pbp3pp/1p1bpp2/3p4/3Pn2B/2PBPN2/PP1N1PPP/R2QK2R,white
+data/real/images_rot180/game6_frame_001216_rot180.jpg,data/synth/images/row000097_black_a7257e13.png,rn1q1rk1/pbp2ppp/1p1bpn2/3p4/3P4/2PBPNB1/PP1N1PPP/R2QK2R,black
+data/real/images/game6_frame_004460.jpg,data/synth/images/row000101_white_92d73beb.png,rn1q1r1k/pbp4B/1p1bp3/3p1pp1/3P4/2P1P1B1/PPQN1PPP/R3K2R,white
+data/real/images/game6_frame_033648.jpg,data/synth/images/row000104_white_f8c13b68.png,8/1Q4k1/4bn2/5p2/1pBP1Pp1/pP4P1/3q4/1K6,white
+data/real/images/game6_frame_003604.jpg,data/synth/images/row000107_white_1d7edc4d.png,rn1q1rk1/pbp3pB/1p1bpp2/3p4/3P3B/2P1PN2/PPQn1PPP/R3K2R,white
+data/real/images_rot180/game6_frame_011180_rot180.jpg,data/synth/images/row000110_black_d5c86125.png,r7/pbp3k1/1p1qpn2/3p1pN1/3P2p1/2P1P3/PPQ1BPP1/2K4R,black
+data/real/images_rot180/game6_frame_000692_rot180.jpg,data/synth/images/row000120_black_a70498f2.png,rnbqkb1r/ppp2ppp/4pn2/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR,black
+data/real/images_rot180/game6_frame_011688_rot180.jpg,data/synth/images/row000134_black_cd35d513.png,r7/pbp3k1/1p1qpn2/3p1pN1/3P1Pp1/2P1P3/PPQ1B1P1/2K4R,black
+data/real/images_rot180/game6_frame_003724_rot180.jpg,data/synth/images/row000137_black_79cc99b3.png,rn1q1r1k/pbp3pB/1p1bpp2/3p4/3P3B/2P1PN2/PPQn1PPP/R3K2R,black
+data/real/images/game6_frame_008000.jpg,data/synth/images/row000139_white_f9dca780.png,r7/pbpn2k1/1p1qp3/3p1pp1/3P4/2P1PN2/PPQ1BPPr/2KR3R,white
+data/real/images_rot180/game6_frame_000036_rot180.jpg,data/synth/images/row000141_black_39bfca67.png,rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR,black
+data/real/images_rot180/game6_frame_006760_rot180.jpg,data/synth/images/row000144_black_0557a86e.png,r7/pbpn2k1/1p1qp3/3p1pp1/3P4/2P1P3/PPQNBPPr/2KR3R,black
+data/real/images_rot180/game6_frame_020160_rot180.jpg,data/synth/images/row000148_black_a10a5c6c.png,r7/p1pq2k1/1pb1pn2/3p1pN1/3P1Pp1/2PBP1P1/PPQ5/2K4R,black
+data/real/images/game6_frame_031224.jpg,data/synth/images/row000154_white_1e7823ab.png,q7/3b2k1/4pn2/p2p1pN1/1pPP1Pp1/1P1BP1P1/1K2Q3/8,white
+data/real/images/game6_frame_030460.jpg,data/synth/images/row000162_white_e7997812.png,7q/3b2k1/4pn2/pp1p1pN1/3P1Pp1/1PPBP1P1/1K2Q3/8,white
+data/real/images_rot180/game6_frame_030592_rot180.jpg,data/synth/images/row000163_black_de31b9c8.png,7q/3b2k1/4pn2/p2p1pN1/1pPP1Pp1/1P1BP1P1/1K2Q3/8,black
+data/real/images/game6_frame_032104.jpg,data/synth/images/row000169_white_e21415ca.png,8/3b2k1/4pn2/5pN1/ppBP1Pp1/1P2P1P1/6q1/QK6,white
+data/real/images_rot180/game6_frame_000532_rot180.jpg,data/synth/images/row000176_black_040ce4fe.png,rnbqkbnr/ppp1pppp/8/3p4/3P4/8/PPP1PPPP/RNBQKBNR,black
+data/real/images/game6_frame_021964.jpg,data/synth/images/row000178_white_d09e3d2d.png,8/p1pq2k1/1pb1pn2/3p1pN1/3P1Pp1/1PPBP1P1/P6Q/2K5,white
+data/real/images_rot180/game6_frame_002260_rot180.jpg,data/synth/images/row000188_black_1d6e1b9a.png,rn1q1rk1/pbp3pp/1p1bpp2/3p4/3Pn2B/2PBPN2/PPQN1PPP/R3K2R,black
+data/real/images/game6_frame_032060.jpg,data/synth/images/row000196_white_d975e502.png,q7/3b2k1/4pn2/5pN1/ppBP1Pp1/1P2P1P1/1K6/Q7,white
+data/real/images/game6_frame_004400.jpg,data/synth/images/row000202_white_787d5a37.png,rn1q1r1k/pbp4B/1p1bpp2/3p2p1/3P4/2P1P1B1/PPQN1PPP/R3K2R,white
+data/real/images_rot180/game6_frame_000600_rot180.jpg,data/synth/images/row000217_black_1640b27f.png,rnbqkbnr/ppp1pppp/8/3p4/3P1B2/8/PPP1PPPP/RN1QKBNR,black
+data/real/images/game6_frame_005236.jpg,data/synth/images/row000231_white_2879e002.png,rn3r1k/pbp5/1p1qp1B1/3p1pp1/3P4/2P1P3/PPQN1PPP/R3K2R,white
+data/real/images/game6_frame_001060.jpg,data/synth/images/row000250_white_5ddfc7f8.png,rn1qk2r/pbp2ppp/1p1bpn2/3p4/3P4/2P1PNB1/PP1N1PPP/R2QKB1R,white
+data/real/images_rot180/game6_frame_027448_rot180.jpg,data/synth/images/row000251_black_7c4a429d.png,4q3/3b2k1/1pp1pn2/p2p1pN1/P2P1PpQ/1PPBP1P1/1K6/8,black
+data/real/images_rot180/game6_frame_028008_rot180.jpg,data/synth/images/row000253_black_e7ca0714.png,4q3/3b2k1/1pp1pn2/p2p1pN1/P2P1Pp1/1PPBP1P1/1K5Q/8,black
+data/real/images/game6_frame_020508.jpg,data/synth/images/row000267_white_73692208.png,7r/p1pq2k1/1pb1pn2/3p1pN1/3P1Pp1/2PBP1P1/PPQ5/2K4R,white
+data/real/images/game6_frame_006500.jpg,data/synth/images/row000272_white_20e5aa2f.png,rn6/pbp3k1/1p1qp3/3p1pp1/3P4/2P1P3/PPQNBPPr/2KR3R,white
+data/real/images/game6_frame_008088.jpg,data/synth/images/row000273_white_8660d639.png,r7/pbpn2k1/1p1qp3/3p1pp1/3P4/2P1PN2/PPQ1BPP1/2K4R,white
+data/real/images_rot180/game6_frame_029012_rot180.jpg,data/synth/images/row000281_black_3ebcaee9.png,7q/3b2k1/2p1pn2/pp1p1pN1/P2P1Pp1/1PPBP1P1/1K4Q1/8,black
+data/real/images/game6_frame_031880.jpg,data/synth/images/row000285_white_1bf6aadd.png,q7/3b2k1/4pn2/5pN1/pppP1Pp1/1P1BP1P1/1K6/Q7,white
+data/real/images_rot180/game6_frame_020564_rot180.jpg,data/synth/images/row000292_black_b4933caf.png,7k/p1pq4/1pb1pn2/3p1pN1/3P1Pp1/2PBP1P1/PP5Q/2K5,black
+data/real/images_rot180/game6_frame_001252_rot180.jpg,data/synth/images/row000294_black_f31bdd66.png,rn1q1rk1/pbp2ppp/1p1bp3/3p4/3Pn3/2PBPNB1/PP1N1PPP/R2QK2R,black
+data/real/images_rot180/game6_frame_023748_rot180.jpg,data/synth/images/row000297_black_b2cbfed8.png,4q3/2pb2k1/1p2pn2/p2p1pN1/3P1Pp1/1PPBP1P1/PK2Q3/8,black
+data/real/images/game6_frame_022716.jpg,data/synth/images/row000301_white_3eb046ae.png,4q3/p1pb2k1/1p2pn2/3p1pN1/3P1Pp1/1PPBP1P1/PK5Q/8,white
+data/real/images_rot180/game6_frame_033372_rot180.jpg,data/synth/images/row000306_black_6aee9d5a.png,8/3b2k1/4pn2/5pN1/1pBP1Pp1/pP4P1/3q4/1K5Q,black
+data/real/images/game6_frame_033252.jpg,data/synth/images/row000309_white_97cd6ee8.png,8/3b2k1/4pn2/5pN1/ppBP1Pp1/1P4P1/3q4/1K5Q,white
+data/real/images/game6_frame_024012.jpg,data/synth/images/row000312_white_5386dc32.png,4q3/2pb2k1/1p2pn2/p2p1pN1/P2P1Pp1/1PPBP1P1/1K2Q3/8,white
+data/real/images/game6_frame_009844.jpg,data/synth/images/row000313_white_2db9934d.png,r7/pbpn2k1/1p1qp3/3p1pN1/3P2p1/2P1P3/PPQ1BPP1/2K4R,white
+data/real/images_rot180/game6_frame_001680_rot180.jpg,data/synth/images/row000315_black_a64113bb.png,rn1q1rk1/pbp2ppp/1p1bp3/3p4/3Pn2B/2PBPN2/PP1N1PPP/R2QK2R,black
+data/real/images/game6_frame_022164.jpg,data/synth/images/row000320_white_f022f3eb.png,4q3/p1p3k1/1pb1pn2/3p1pN1/3P1Pp1/1PPBP1P1/P6Q/2K5,white
+data/real/images/game6_frame_004768.jpg,data/synth/images/row000331_white_57c6ec94.png,rn1q1r1k/pbp4B/1p1Bp3/3p1pp1/3P4/2P1P3/PPQN1PPP/R3K2R,white
+data/real/images_rot180/game6_frame_032224_rot180.jpg,data/synth/images/row000337_black_442ad489.png,8/3b2k1/4pn2/5pN1/ppBP1Pp1/1P2P1P1/K7/Q5q1,black
+data/real/images_rot180/game6_frame_031792_rot180.jpg,data/synth/images/row000351_black_d10b617b.png,q7/3b2k1/4pn2/3p1pN1/ppPP1Pp1/1P1BP1P1/1K6/Q7,black
+data/real/images/game6_frame_028320.jpg,data/synth/images/row000356_white_a3902356.png,7q/3b2k1/1pp1pn2/p2p1pN1/P2P1Pp1/1PPBP1P1/1K5Q/8,white
+data/real/images/game6_frame_000824.jpg,data/synth/images/row000366_white_7d8ef37a.png,rnbqk2r/ppp2ppp/3bpn2/3p4/3P4/4P1B1/PPPN1PPP/R2QKBNR,white
+data/real/images_rot180/game6_frame_028904_rot180.jpg,data/synth/images/row000372_black_fa61d3a9.png,7q/3b2k1/1pp1pn2/p2p1pN1/P2P1Pp1/1PPBP1P1/1K4Q1/8,black
+data/real/images/game6_frame_000960.jpg,data/synth/images/row000374_white_cf64b814.png,rnbqk2r/p1p2ppp/1p1bpn2/3p4/3P4/4P1B1/PPPN1PPP/R2QKBNR,white
+data/real/images_rot180/game6_frame_024520_rot180.jpg,data/synth/images/row000390_black_7d771dde.png,4q3/2pb2k1/1p2p3/p2p1pNn/P2P1Pp1/1PPBP1P1/1K2Q3/8,black
+data/real/images_rot180/game6_frame_005300_rot180.jpg,data/synth/images/row000394_black_34beac42.png,rn3r2/pbp3k1/1p1qp1B1/3p1pp1/3P4/2P1P3/PPQN1PPP/R3K2R,black
+data/real/images_rot180/game6_frame_032968_rot180.jpg,data/synth/images/row000408_black_45e94266.png,8/3b2k1/4pn2/5pN1/ppBP1Pp1/1P4P1/K2q4/7Q,black
+data/real/images_rot180/game6_frame_032440_rot180.jpg,data/synth/images/row000436_black_31954f14.png,8/3b2k1/4pn2/5pN1/ppBP1Pp1/1P2q1P1/K7/Q7,black
+data/real/images/game6_frame_016936.jpg,data/synth/images/row000458_white_627dd8f8.png,r7/p1p3k1/1pbqpn2/3p1pN1/3P1Pp1/2P1P3/PPQ1B1P1/2K4R,white
+data/real/images_rot180/game6_frame_024952_rot180.jpg,data/synth/images/row000462_black_f10b3c92.png,4q3/2pb2k1/1p2p3/p2p1pNn/P2P1Pp1/1PPBP1P1/1K5Q/8,black
+data/real/images_rot180/game6_frame_004184_rot180.jpg,data/synth/images/row000463_black_c947e93d.png,rn1q1r1k/pbp4B/1p1bpp2/3p2p1/3P3B/2P1P3/PPQN1PPP/R3K2R,black
+data/real/images_rot180/game6_frame_001024_rot180.jpg,data/synth/images/row000010_black_5fed5921.png,rnbqk2r/p1p2ppp/1p1bpn2/3p4/3P4/2P1P1B1/PP1N1PPP/R2QKBNR,black
+data/real/images_rot180/game6_frame_005196_rot180.jpg,data/synth/images/row000017_black_5100aa01.png,rn3r1k/pbp4B/1p1qp3/3p1pp1/3P4/2P1P3/PPQN1PPP/R3K2R,black
+data/real/images_rot180/game6_frame_005360_rot180.jpg,data/synth/images/row000023_black_2d07c7a8.png,rn3r2/pbp3k1/1p1qp3/3p1ppB/3P4/2P1P3/PPQN1PPP/R3K2R,black
+data/real/images_rot180/game6_frame_025332_rot180.jpg,data/synth/images/row000024_black_102ea0ff.png,4q3/3b2k1/1pp1p3/p2p1pNn/P2P1Pp1/1PPBP1P1/1K5Q/8,black
+data/real/images/game6_frame_000636.jpg,data/synth/images/row000040_white_7891ecc4.png,rnbqkbnr/ppp2ppp/4p3/3p4/3P1B2/4P3/PPP2PPP/RN1QKBNR,white
+data/real/images/game6_frame_003904.jpg,data/synth/images/row000044_white_1ff939b3.png,rn1q1r1k/pbp3pB/1p1bpp2/3p4/3P3B/2P1P3/PPQN1PPP/R3K2R,white
+data/real/images_rot180/game6_frame_006112_rot180.jpg,data/synth/images/row000046_black_452f7408.png,rn5r/pbp3k1/1p1qp3/3p1pp1/3P4/2P1P3/PPQNBPPP/R3K2R,black
+data/real/images/game4_frame_001396.jpg,data/synth/images/row000001_white_81496acc.png,r2qkb1r/pp2pppp/2n1b3/3nP3/2B5/5N2/PP3PPP/RNBQ1RK1,white
+data/real/images_rot180/game4_frame_018052_rot180.jpg,data/synth/images/row000002_black_91be52ca.png,5b2/pR2ppkp/6p1/r2NP3/8/6P1/5P1P/6K1,black
+data/real/images_rot180/game4_frame_024584_rot180.jpg,data/synth/images/row000005_black_c3e36e4c.png,3N2k1/7p/6p1/p1b5/4R3/6P1/2r2P1P/5K2,black
+data/real/images/game4_frame_023508.jpg,data/synth/images/row000007_white_0696ee3c.png,3N1bk1/5R1p/6p1/p7/8/6P1/2r2P1P/5K2,white
+data/real/images/game4_frame_037180.jpg,data/synth/images/row000012_white_f0d91bf2.png,8/4k3/4N3/3K2P1/5P2/4R3/8/7r,white
+data/real/images/game4_frame_034136.jpg,data/synth/images/row000013_white_d4112769.png,8/7k/8/7p/R4N2/p5P1/1b3PKP/r7,white
+data/real/images/game4_frame_012880.jpg,data/synth/images/row000014_white_c7332f67.png,1r3rk1/p3ppbp/6p1/4P3/2nB4/4R3/P2N1PPP/1R4K1,white
+data/real/images/game4_frame_030952.jpg,data/synth/images/row000016_white_0dbe8f87.png,R5k1/8/6p1/7p/p4N2/2b3P1/r4P1P/5K2,white
+data/real/images/game4_frame_018432.jpg,data/synth/images/row000017_white_18dc6e5f.png,5b2/pR2Npkp/6p1/4r3/8/6P1/5P1P/6K1,white
+data/real/images_rot180/game4_frame_020140_rot180.jpg,data/synth/images/row000021_black_ff39633a.png,3N1b2/pR3pkp/6p1/8/8/6P1/2r2P1P/5K2,black
+data/real/images/game4_frame_014504.jpg,data/synth/images/row000022_white_9bd6d416.png,1R3bk1/p3pp1p/6p1/4P3/3r4/4N3/P4PPP/6K1,white
+data/real/images/game4_frame_000964.jpg,data/synth/images/row000030_white_8c7fa359.png,r1bqkb1r/pp2pppp/2n5/3nP3/2B5/5N2/PP3PPP/RNBQK2R,white
+data/real/images_rot180/game4_frame_027112_rot180.jpg,data/synth/images/row000031_black_2cb3a404.png,6k1/8/3bN1p1/p6p/5R2/6P1/2r2P1P/5K2,black
+data/real/images/game4_frame_010588.jpg,data/synth/images/row000033_white_23e457a4.png,1r1q1rk1/p3ppbp/6p1/2n1P3/3Q4/2B5/PP1N1PPP/R3R1K1,white
+data/real/images/game4_frame_006856.jpg,data/synth/images/row000038_white_dbb06cfd.png,r2q1rk1/p3ppbp/6p1/4P3/3nQ3/8/PP1B1PPP/RN2R1K1,white
+data/real/images_rot180/game4_frame_015972_rot180.jpg,data/synth/images/row000044_black_c8f03a55.png,1R3bk1/p3pp1p/6p1/3NP3/8/6P1/r4P1P/6K1,black
+data/real/images/game4_frame_014464.jpg,data/synth/images/row000045_white_833784c8.png,1R4k1/p3ppbp/6p1/4P3/2Nr4/8/P4PPP/6K1,white
+data/real/images/game4_frame_023452.jpg,data/synth/images/row000048_white_df41c5fc.png,3N1b2/5Rkp/6p1/p7/8/6P1/2r2P1P/5K2,white
+data/real/images/game4_frame_013352.jpg,data/synth/images/row000052_white_b1039ec5.png,1r4k1/p3ppbp/6p1/4P3/2nB4/1R6/P2N1PPP/6K1,white
+data/real/images_rot180/game4_frame_034268_rot180.jpg,data/synth/images/row000055_black_811c6f6a.png,8/7k/8/7N/R7/p5P1/1b3PKP/3r4,black
+data/real/images/game4_frame_011668.jpg,data/synth/images/row000056_white_689c58da.png,1r1q1rk1/p3ppbp/6p1/4P3/3Q4/2BnR3/PP1N1PPP/R5K1,white
+data/real/images/game4_frame_004284.jpg,data/synth/images/row000059_white_d8989998.png,r2q1rk1/pp2ppbp/2n1b1p1/3nP3/2B5/1Q3N2/PP1B1PPP/RN2R1K1,white
+data/real/images_rot180/game4_frame_003748_rot180.jpg,data/synth/images/row000064_black_f696379c.png,r2q1rk1/pp2ppbp/2n1b1p1/3nP3/2B5/1Q3N2/PP3PPP/RNB1R1K1,black
+data/real/images/game4_frame_029056.jpg,data/synth/images/row000066_white_59298bfd.png,6k1/8/6p1/p2R3p/5N2/2b3P1/2r2P1P/5K2,white
+data/real/images/game4_frame_037040.jpg,data/synth/images/row000075_white_66c79418.png,R7/8/4Nk2/3K2P1/5P1r/p7/8/8,white
+data/real/images/game4_frame_000848.jpg,data/synth/images/row000077_white_09c731b7.png,rnbqkb1r/pp2pppp/3p4/3nP3/3P4/5N2/PP3PPP/RNBQKB1R,white
+data/real/images/game4_frame_030232.jpg,data/synth/images/row000078_white_20382515.png,6k1/R7/6p1/7p/p4N2/2b3P1/r4P1P/5K2,white
+data/real/images/game4_frame_028412.jpg,data/synth/images/row000083_white_860931d1.png,6k1/8/4N1p1/p2R3p/8/2b3P1/2r2P1P/5K2,white
+data/real/images_rot180/game4_frame_037264_rot180.jpg,data/synth/images/row000086_black_67c910e6.png,8/4k3/4N3/4K1P1/5P2/4R3/8/r7,black
+data/real/images_rot180/game4_frame_027984_rot180.jpg,data/synth/images/row000091_black_05848fd9.png,6k1/8/4N1p1/p3b2p/3R4/6P1/2r2P1P/5K2,black
+data/real/images_rot180/game4_frame_000892_rot180.jpg,data/synth/images/row000093_black_93bfff50.png,r1bqkb1r/pp2pppp/2np4/3nP3/2BP4/5N2/PP3PPP/RNBQK2R,black
+data/real/images_rot180/game4_frame_032808_rot180.jpg,data/synth/images/row000096_black_2b1f79e0.png,8/7k/R7/7p/3b1N2/p5P1/5PKP/r7,black
+data/real/images/game4_frame_037504.jpg,data/synth/images/row000099_white_f9919090.png,8/4k3/4N3/4RKP1/5P2/8/8/r7,white
+data/real/images/game4_frame_014060.jpg,data/synth/images/row000100_white_7477d47c.png,3r2k1/p3ppbp/6p1/4P3/2nB4/1R6/P2N1PPP/6K1,white
+data/real/images/game4_frame_013316.jpg,data/synth/images/row000103_white_e0198997.png,1r4k1/p3ppbp/6p1/4P3/2nB4/4R3/P2N1PPP/6K1,white
+data/real/images/game4_frame_038832.jpg,data/synth/images/row000106_white_dd2c2ff2.png,4k1N1/7R/5K2/5P2/8/8/8/8,white
+data/real/images_rot180/game4_frame_005968_rot180.jpg,data/synth/images/row000114_black_1b3a093f.png,r2q1rk1/pQ2ppbp/2n1n1p1/4P3/8/5N2/PP1B1PPP/RN2R1K1,black
+data/real/images/game4_frame_037076.jpg,data/synth/images/row000117_white_52527570.png,R7/4k3/4N3/3K2P1/5P1r/p7/8/8,white
+data/real/images_rot180/game4_frame_036484_rot180.jpg,data/synth/images/row000123_black_70f02d71.png,R4bk1/8/8/8/4KPPP/p2N4/2r5/8,black
+data/real/images/game4_frame_037128.jpg,data/synth/images/row000124_white_50d2e621.png,8/4k3/4N3/3K2P1/5P2/R7/8/7r,white
+data/real/images/game4_frame_038044.jpg,data/synth/images/row000133_white_b6c74a69.png,1r4k1/4R3/6P1/5NK1/5P2/8/8/8,white
+data/real/images/game4_frame_011104.jpg,data/synth/images/row000140_white_1d8d33d3.png,1r1q1rk1/p3ppbp/6p1/4P3/3Q4/2Bn4/PP1N1PPP/R3R1K1,white
+data/real/images/game4_frame_038276.jpg,data/synth/images/row000143_white_a1373447.png,1r2k3/7R/6PN/6K1/5P2/8/8/8,white
+data/real/images/game4_frame_030000.jpg,data/synth/images/row000149_white_8ea8d6c5.png,R7/5k2/6p1/7p/p4N2/2b3P1/r4P1P/5K2,white
+data/real/images_rot180/game4_frame_035020_rot180.jpg,data/synth/images/row000161_black_90273142.png,8/7k/8/8/R4N1P/p5P1/1b1r1PK1/8,black
+data/real/images_rot180/game4_frame_008820_rot180.jpg,data/synth/images/row000166_black_7b86dd04.png,1r1q1rk1/p3ppbp/6p1/4P3/3nQ3/2B5/PP3PPP/RN2R1K1,black
+data/real/images/game4_frame_034392.jpg,data/synth/images/row000174_white_44b11459.png,8/7k/8/8/R4N2/p5P1/1b3PKP/3r4,white
+data/real/images_rot180/game4_frame_003232_rot180.jpg,data/synth/images/row000175_black_d20b5e0f.png,r2qk2r/pp2ppbp/2n1b1p1/3nP3/2B5/1Q3N2/PP3PPP/RNB1R1K1,black
+data/real/images/game4_frame_009148.jpg,data/synth/images/row000177_white_dfeba2aa.png,1r1q1rk1/p3ppbp/4n1p1/4P3/4Q3/2B5/PP1N1PPP/R3R1K1,white
+data/real/images/game4_frame_037220.jpg,data/synth/images/row000180_white_c97c463d.png,8/4k3/4N3/4K1P1/5P2/4R3/8/3r4,white
+data/real/images_rot180/game4_frame_037740_rot180.jpg,data/synth/images/row000184_black_e76afdbe.png,r5k1/8/4RKP1/8/3N1P2/8/8/8,black
+data/real/images_rot180/game4_frame_036580_rot180.jpg,data/synth/images/row000187_black_bdf7f1f7.png,R4bk1/8/8/3K4/5PPP/p1rN4/8/8,black
+data/real/images/game4_frame_036424.jpg,data/synth/images/row000189_white_e95530fb.png,5bk1/R7/8/8/4KPPP/p2N4/2r5/8,white
+data/real/images_rot180/game4_frame_009404_rot180.jpg,data/synth/images/row000191_black_457f415f.png,1r1q1rk1/p3ppbp/6p1/2n1P3/4Q3/2B5/PP1N1PPP/R3R1K1,black
+data/real/images_rot180/game4_frame_031880_rot180.jpg,data/synth/images/row000201_black_bea92f14.png,8/8/R5pk/7p/p4N2/2b3P1/r4P1P/5K2,black
+data/real/images/game4_frame_037340.jpg,data/synth/images/row000204_white_c3b91cec.png,8/4k3/4N3/5KP1/5P2/4R3/8/r7,white
+data/real/images_rot180/game4_frame_032288_rot180.jpg,data/synth/images/row000207_black_a959b2da.png,8/7k/R7/7p/5N2/p1b3P1/r4P1P/5K2,black
+data/real/images_rot180/game4_frame_038480_rot180.jpg,data/synth/images/row000209_black_2a91f866.png,4k3/6PR/5K1N/5P2/8/8/8/6r1,black
+data/real/images_rot180/game4_frame_037108_rot180.jpg,data/synth/images/row000212_black_7a98dcf8.png,8/4k3/4N3/3K2P1/5P1r/R7/8/8,black
+data/real/images/game4_frame_031008.jpg,data/synth/images/row000213_white_f8fc022e.png,R7/7k/6p1/7p/p4N2/2b3P1/r4P1P/5K2,white
+data/real/images_rot180/game4_frame_036812_rot180.jpg,data/synth/images/row000214_black_91bb1255.png,R4N2/6k1/8/3K4/5PPP/p6r/8/8,black
+data/real/images_rot180/game4_frame_036652_rot180.jpg,data/synth/images/row000224_black_f0b74f79.png,R4bk1/8/8/3KN3/5PPP/p1r5/8/8,black
+data/real/images/game4_frame_023540.jpg,data/synth/images/row000225_white_c8f83070.png,3N1bk1/7p/6p1/p7/5R2/6P1/2r2P1P/5K2,white
+data/real/images/game4_frame_031912.jpg,data/synth/images/row000234_white_b774d032.png,8/8/R5pk/7p/5N2/p1b3P1/r4P1P/5K2,white
+data/real/images_rot180/game4_frame_031432_rot180.jpg,data/synth/images/row000235_black_c1659147.png,8/R7/6pk/7p/p4N2/2b3P1/r4P1P/5K2,black
+data/real/images_rot180/game4_frame_000028_rot180.jpg,data/synth/images/row000236_black_39bfca67.png,rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR,black
+data/real/images/game4_frame_006656.jpg,data/synth/images/row000239_white_b478364e.png,r2q1rk1/pQ2ppbp/4n1p1/4P3/3N4/8/PP1B1PPP/RN2R1K1,white
+data/real/images_rot180/game4_frame_035720_rot180.jpg,data/synth/images/row000241_black_973aaa5d.png,8/7k/8/8/R3K2P/p1rN2P1/5P2/2b5,black
+data/real/images_rot180/game4_frame_037528_rot180.jpg,data/synth/images/row000242_black_d26eb988.png,8/4k3/8/4RKP1/3N1P2/8/8/r7,black
+data/real/images/game4_frame_037940.jpg,data/synth/images/row000243_white_64579922.png,r5k1/4R3/6P1/5NK1/5P2/8/8/8,white
+data/real/images/game4_frame_038872.jpg,data/synth/images/row000246_white_00508b00.png,5kN1/7R/4K3/5P2/8/8/8/8,white
+data/real/images/game4_frame_035212.jpg,data/synth/images/row000255_white_0ebcd4e3.png,8/7k/8/8/R4N1P/p4KP1/3r1P2/2b5,white
+data/real/images_rot180/game4_frame_015864_rot180.jpg,data/synth/images/row000257_black_eef58ccc.png,1R3bk1/p3pp1p/6p1/4P3/r7/4N1P1/P4P1P/6K1,black
+data/real/images/game4_frame_006504.jpg,data/synth/images/row000259_white_88b7b186.png,r2q1rk1/pQ2ppbp/4n1p1/4P3/3n4/5N2/PP1B1PPP/RN2R1K1,white
+data/real/images/game4_frame_032400.jpg,data/synth/images/row000265_white_26391c02.png,8/7k/R7/7p/5N2/p1b3P1/5PKP/r7,white
+data/real/images/game4_frame_015216.jpg,data/synth/images/row000270_white_c0c571df.png,1R3bk1/p3pp1p/6p1/4P3/r7/4N3/P4PPP/6K1,white
+data/real/images/game4_frame_037820.jpg,data/synth/images/row000274_white_939e8c54.png,5rk1/8/4RKP1/5N2/5P2/8/8/8,white
+data/real/images_rot180/game4_frame_018844_rot180.jpg,data/synth/images/row000276_black_a54cbdd6.png,5b2/pR3pkp/2N3p1/4r3/8/6P1/5P1P/6K1,black
+data/real/images_rot180/game4_frame_027056_rot180.jpg,data/synth/images/row000284_black_f45f5ad5.png,6k1/8/4N1p1/p1b4p/5R2/6P1/2r2P1P/5K2,black
+data/real/images_rot180/game4_frame_007992_rot180.jpg,data/synth/images/row000296_black_8001b931.png,1r1q1rk1/p3ppbp/6p1/4P3/3nQ3/8/PP1B1PPP/RN2R1K1,black
+data/real/images_rot180/game4_frame_035924_rot180.jpg,data/synth/images/row000300_black_a25b73b7.png,8/7k/7b/8/R3KP1P/p1rN2P1/8/8,black
+data/real/images/game4_frame_029464.jpg,data/synth/images/row000307_white_e3923b7b.png,3R2k1/8/6p1/7p/p4N2/2b3P1/2r2P1P/5K2,white
+data/real/images/game4_frame_031332.jpg,data/synth/images/row000310_white_fe11c15f.png,8/R6k/6p1/7p/p4N2/2b3P1/r4P1P/5K2,white
+data/real/images_rot180/game4_frame_029564_rot180.jpg,data/synth/images/row000317_black_036e6465.png,R7/5k2/6p1/7p/p4N2/2b3P1/2r2P1P/5K2,black
+data/real/images/game4_frame_036400.jpg,data/synth/images/row000319_white_31c521b7.png,5b2/R6k/8/8/4KPPP/p2N4/2r5/8,white
+data/real/images_rot180/game4_frame_016136_rot180.jpg,data/synth/images/row000321_black_778bc22f.png,1R3b2/p3ppkp/6p1/3NP3/8/6P1/r4P1P/6K1,black
+data/real/images/game4_frame_000604.jpg,data/synth/images/row000327_white_4d42b802.png,rnbqkbnr/pp1ppppp/8/2p5/4P3/2P5/PP1P1PPP/RNBQKBNR,white
+data/real/images_rot180/game4_frame_028124_rot180.jpg,data/synth/images/row000330_black_cadaf6f2.png,6k1/8/4N1p1/p2Rb2p/8/6P1/2r2P1P/5K2,black
+data/real/images/game4_frame_033452.jpg,data/synth/images/row000336_white_a6bf8e3f.png,8/7k/8/7p/R2b1N2/p5P1/5PKP/r7,white
+data/real/images_rot180/game4_frame_030060_rot180.jpg,data/synth/images/row000340_black_93b30df0.png,8/R4k2/6p1/7p/p4N2/2b3P1/r4P1P/5K2,black
+data/real/images/game4_frame_029500.jpg,data/synth/images/row000341_white_410d2cf2.png,3R4/5k2/6p1/7p/p4N2/2b3P1/2r2P1P/5K2,white
+data/real/images_rot180/game4_frame_036772_rot180.jpg,data/synth/images/row000346_black_2631f50e.png,R4bk1/8/6N1/3K4/5PPP/p6r/8/8,black
+data/real/images_rot180/game4_frame_034532_rot180.jpg,data/synth/images/row000350_black_fa5616b8.png,8/7k/8/8/R4N2/p5P1/1b1r1PKP/8,black
+data/real/images_rot180/game4_frame_037668_rot180.jpg,data/synth/images/row000354_black_d3c76400.png,6k1/8/5KP1/4R3/3N1P2/8/8/r7,black
+data/real/images/game4_frame_036520.jpg,data/synth/images/row000363_white_784326d6.png,R4bk1/8/8/8/2r1KPPP/p2N4/8/8,white
+data/real/images_rot180/game4_frame_013192_rot180.jpg,data/synth/images/row000367_black_4f849886.png,1R3rk1/p3ppbp/6p1/4P3/2nB4/4R3/P2N1PPP/6K1,black
+data/real/images_rot180/game4_frame_024180_rot180.jpg,data/synth/images/row000371_black_f5758b98.png,3N2k1/7p/3b2p1/p7/5R2/6P1/2r2P1P/5K2,black
+data/real/images_rot180/game4_frame_037636_rot180.jpg,data/synth/images/row000375_black_a5cd8f02.png,6k1/8/6P1/4RK2/3N1P2/8/8/r7,black
+data/real/images_rot180/game4_frame_012444_rot180.jpg,data/synth/images/row000376_black_f982cdf4.png,1r3rk1/p3ppbp/6p1/4P3/3B4/4R3/Pn1N1PPP/R5K1,black
+data/real/images/game4_frame_038772.jpg,data/synth/images/row000379_white_c880a974.png,3k2Q1/7R/5K1N/5P2/8/8/8/6r1,white
+data/real/images/game4_frame_012316.jpg,data/synth/images/row000383_white_95dfbe12.png,1r3rk1/p3ppbp/6p1/4P3/3B4/3nR3/PP1N1PPP/R5K1,white
+data/real/images/game4_frame_000656.jpg,data/synth/images/row000385_white_d2472e66.png,rnbqkb1r/pp1ppppp/8/2pnP3/3P4/2P5/PP3PPP/RNBQKBNR,white
+data/real/images_rot180/game4_frame_037420_rot180.jpg,data/synth/images/row000391_black_84ecff8d.png,8/4k3/4N3/r3RKP1/5P2/8/8/8,black
+data/real/images/game4_frame_026828.jpg,data/synth/images/row000396_white_5ffeda4d.png,3N2k1/8/6p1/p1b4p/5R2/6P1/2r2P1P/5K2,white
+data/real/images/game4_frame_000924.jpg,data/synth/images/row000398_white_6a780695.png,r1bqkb1r/pp2pppp/2n5/3np3/2BP4/5N2/PP3PPP/RNBQK2R,white
+data/real/images/game4_frame_035848.jpg,data/synth/images/row000402_white_cc61d11c.png,8/7k/7b/8/R3K2P/p1rN2P1/5P2/8,white
+data/real/images_rot180/game4_frame_035972_rot180.jpg,data/synth/images/row000403_black_fbe1cc53.png,5b2/7k/8/8/R3KP1P/p1rN2P1/8/8,black
+data/real/images/game4_frame_035492.jpg,data/synth/images/row000404_white_12d4c909.png,8/7k/8/8/R6P/p2N1KP1/2r2P2/2b5,white
+data/real/images_rot180/game4_frame_038728_rot180.jpg,data/synth/images/row000406_black_8d286399.png,3k4/6PR/5K1N/5P2/8/8/8/6r1,black
+data/real/images/game4_frame_037000.jpg,data/synth/images/row000410_white_85c22571.png,R7/6k1/4N3/3K4/5PPr/p7/8/8,white
+data/real/images_rot180/game4_frame_014428_rot180.jpg,data/synth/images/row000412_black_354176e4.png,6k1/p3ppbp/6p1/4P3/2Nr4/1R6/P4PPP/6K1,black
+data/real/images_rot180/game4_frame_008896_rot180.jpg,data/synth/images/row000415_black_b6adaaf1.png,1r1q1rk1/p3ppbp/4n1p1/4P3/4Q3/2B5/PP3PPP/RN2R1K1,black
+data/real/images/game4_frame_000628.jpg,data/synth/images/row000418_white_daa92d91.png,rnbqkb1r/pp1ppppp/5n2/2p1P3/8/2P5/PP1P1PPP/RNBQKBNR,white
+data/real/images_rot180/game4_frame_001320_rot180.jpg,data/synth/images/row000419_black_48cef811.png,r2qkb1r/pp2pppp/2n1b3/3nP3/2B5/5N2/PP3PPP/RNBQK2R,black
+data/real/images/game4_frame_022252.jpg,data/synth/images/row000421_white_7a67b3f1.png,3N1b2/1R3pkp/6p1/p7/8/6P1/2r2P1P/5K2,white
+data/real/images/game4_frame_038360.jpg,data/synth/images/row000422_white_c6b9947b.png,4k3/6PR/7N/5PK1/8/8/8/1r6,white
+data/real/images/game4_frame_036244.jpg,data/synth/images/row000424_white_37e8dc32.png,5b2/7k/8/8/R3KPPP/p2N4/2r5/8,white
+data/real/images/game4_frame_001544.jpg,data/synth/images/row000432_white_3646911f.png,r2qkb1r/pp2pp1p/2n1b1p1/3nP3/2B5/5N2/PP3PPP/RNBQ1RK1,white
+data/real/images/game4_frame_004880.jpg,data/synth/images/row000441_white_c96f7319.png,r2q1rk1/pp2ppbp/2n1n1p1/4P3/8/1Q3N2/PP1B1PPP/RN2R1K1,white
+data/real/images/game4_frame_004660.jpg,data/synth/images/row000445_white_3323b280.png,r2q1rk1/ppn1ppbp/2n1b1p1/4P3/2B5/1Q3N2/PP1B1PPP/RN2R1K1,white
+data/real/images/game4_frame_024552.jpg,data/synth/images/row000447_white_66777727.png,3N2k1/7p/3b2p1/p7/4R3/6P1/2r2P1P/5K2,white
+data/real/images_rot180/game4_frame_039008_rot180.jpg,data/synth/images/row000448_black_583306d3.png,6k1/R7/5K2/5P2/8/8/8/8,black
+data/real/images_rot180/game4_frame_002156_rot180.jpg,data/synth/images/row000449_black_9baec4bd.png,r2qk2r/pp2ppbp/2n1b1p1/3nP3/2B5/1Q3N2/PP3PPP/RNB2RK1,black
+data/real/images_rot180/game4_frame_019684_rot180.jpg,data/synth/images/row000450_black_d68c2efa.png,5b2/pR3pkp/2N3p1/8/8/6P1/2r2P1P/5K2,black
+data/real/images_rot180/game4_frame_019488_rot180.jpg,data/synth/images/row000452_black_25280e33.png,5b2/pR3pkp/2N3p1/8/8/6P1/4rP1P/5K2,black
+data/real/images/game4_frame_019128.jpg,data/synth/images/row000002_white_8518a39c.png,5b2/pR3pkp/2N3p1/8/8/6P1/4rP1P/6K1,white
+data/real/images/game4_frame_000820.jpg,data/synth/images/row000009_white_039e9140.png,rnbqkb1r/pp2pppp/3p4/3nP3/3P4/8/PP3PPP/RNBQKBNR,white
+data/real/images/game4_frame_001664.jpg,data/synth/images/row000011_white_b4b155b0.png,r2qkb1r/pp2pp1p/2n1b1p1/3nP3/2B5/1Q3N2/PP3PPP/RNB2RK1,white
+data/real/images_rot180/game4_frame_025436_rot180.jpg,data/synth/images/row000013_black_b7fbb60e.png,3N2k1/7p/6p1/p1b5/5R2/6P1/2r2P1P/5K2,black
+data/real/images_rot180/game4_frame_037840_rot180.jpg,data/synth/images/row000016_black_0c7249b8.png,5rk1/8/4R1P1/5NK1/5P2/8/8/8,black
+data/real/images_rot180/game4_frame_037896_rot180.jpg,data/synth/images/row000018_black_5aa5a3e4.png,r5k1/8/4R1P1/5NK1/5P2/8/8/8,black
+data/real/images_rot180/game4_frame_037772_rot180.jpg,data/synth/images/row000025_black_566146e0.png,r5k1/8/4RKP1/5N2/5P2/8/8/8,black
+data/real/images/game4_frame_016232.jpg,data/synth/images/row000039_white_fa295957.png,5b2/pR2ppkp/6p1/3NP3/8/6P1/r4P1P/6K1,white
+data/real/images_rot180/game4_frame_029184_rot180.jpg,data/synth/images/row000043_black_5fbe711a.png,6k1/8/6p1/3R3p/p4N2/2b3P1/2r2P1P/5K2,black
+data/real/images/game4_frame_036556.jpg,data/synth/images/row000051_white_cda62abe.png,R4bk1/8/8/3K4/2r2PPP/p2N4/8/8,white
+data/real/images/game5_frame_004752.jpg,data/synth/images/row000006_white_c7f232ff.png,r4rk1/5pbp/b2p2p1/q1pP1p2/2n5/2N1P1P1/PPQ1NPBP/R2R2K1,white
+data/real/images_rot180/game5_frame_007436_rot180.jpg,data/synth/images/row000008_black_bc8a3e5b.png,rr4k1/5p1p/3p2p1/q1pPbp1P/8/4P1P1/P1R1QPB1/3R2K1,black
+data/real/images/game5_frame_002360.jpg,data/synth/images/row000018_white_4c996c20.png,rnbq1rk1/pp1p1pbp/6p1/2pP1p2/2P5/2N1P1P1/PP3P1P/R2QKBNR,white
+data/real/images/game5_frame_006280.jpg,data/synth/images/row000020_white_228a0770.png,r4rk1/5pbp/3p2p1/q1pP1p2/8/2N1P1P1/P3QPBP/2RR2K1,white
+data/real/images/game5_frame_034708.jpg,data/synth/images/row000025_white_5d792ea9.png,3r4/P7/2B5/5p2/8/5KP1/2k5/8,white
+data/real/images/game5_frame_002516.jpg,data/synth/images/row000026_white_b32c7edf.png,rnbq1rk1/pp3pbp/3p2p1/2pP1p2/2P5/2N1P1P1/PP3PBP/R2QK1NR,white
+data/real/images/game5_frame_018764.jpg,data/synth/images/row000032_white_bdbb94a5.png,8/2k4p/3p2p1/1BpP1p2/P3PP2/2b3P1/4R1K1/r7,white
+data/real/images/game5_frame_009332.jpg,data/synth/images/row000034_white_fb8f769a.png,1r4k1/7p/3p2p1/2pPbp2/8/r3P1P1/P1R2P2/3R1BK1,white
+data/real/images/game5_frame_032060.jpg,data/synth/images/row000036_white_925b8ec3.png,8/2R5/3r4/1B3p2/P7/1kp3P1/5K2/8,white
+data/real/images/game5_frame_034668.jpg,data/synth/images/row000037_white_06dce287.png,3r4/P7/8/1B3p2/8/5KP1/2k5/8,white
+data/real/images_rot180/game5_frame_025284_rot180.jpg,data/synth/images/row000046_black_c5b611d2.png,8/6R1/6p1/kBpr1p2/P7/6P1/6K1/8,black
+data/real/images/game5_frame_001656.jpg,data/synth/images/row000053_white_3c500bee.png,rnbq1rk1/pp1p1pbp/5pp1/2pP4/2P5/2N5/PP2PPPP/R2QKBNR,white
+data/real/images/game5_frame_034412.jpg,data/synth/images/row000058_white_89d1ac55.png,8/2R5/3r4/PB3p2/8/1kp2KP1/8/8,white
+data/real/images_rot180/game5_frame_000528_rot180.jpg,data/synth/images/row000060_black_c4faa183.png,rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR,black
+data/real/images/game5_frame_018568.jpg,data/synth/images/row000062_white_c814b3fe.png,8/2k4p/3p2p1/1BpP1p2/P4P2/2b1P1P1/4R1K1/r7,white
+data/real/images_rot180/game5_frame_005828_rot180.jpg,data/synth/images/row000065_black_7eb2caca.png,r4rk1/5pbp/3p2p1/q1pP1p2/8/2N1P1P1/PQ2bPBP/2RR2K1,black
+data/real/images/game5_frame_001444.jpg,data/synth/images/row000072_white_8ad84057.png,rnbqk2r/pp1p1pbp/5pp1/2pP4/2P5/2N5/PP2PPPP/R2QKBNR,white
+data/real/images/game5_frame_007544.jpg,data/synth/images/row000081_white_0421aae7.png,rr4k1/5p1p/q2p2p1/2pPbp1P/8/4P1P1/P1R1QPB1/3R2K1,white
+data/real/images_rot180/game5_frame_011884_rot180.jpg,data/synth/images/row000098_black_61a98ee7.png,8/5k1p/3p2p1/2pPbp2/8/3BP1P1/P1R2PK1/1r6,black
+data/real/images_rot180/game5_frame_025004_rot180.jpg,data/synth/images/row000105_black_23de6379.png,8/7R/1k4p1/1Bpr1p2/P7/6P1/6K1/8,black
+data/real/images/game5_frame_000044.jpg,data/synth/images/row000112_white_39bfca67.png,rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR,white
+data/real/images/game5_frame_034084.jpg,data/synth/images/row000115_white_61e8248b.png,8/2R5/3r4/1B3p2/P7/1kp2KP1/8/8,white
+data/real/images_rot180/game5_frame_032488_rot180.jpg,data/synth/images/row000125_black_cff61bc9.png,8/2R5/4r3/1B3p2/P7/1kp1K1P1/8/8,black
+data/real/images/game5_frame_032852.jpg,data/synth/images/row000127_white_a5f3aa5e.png,8/2R5/4r3/1B3p2/P2K4/1kp3P1/8/8,white
+data/real/images_rot180/game5_frame_001412_rot180.jpg,data/synth/images/row000130_black_34f44ceb.png,rnbqk2r/pp1p1pbp/5pp1/2pP4/2P5/8/PP2PPPP/RN1QKBNR,black
+data/real/images_rot180/game5_frame_032120_rot180.jpg,data/synth/images/row000135_black_69f0563c.png,8/2R5/3r4/1B3p2/P7/1kp1K1P1/8/8,black
+data/real/images/game5_frame_003720.jpg,data/synth/images/row000138_white_3a125b5d.png,r2q1rk1/3n1pbp/b2p2p1/2pP1p2/8/2N1P1P1/PP2NPBP/R2Q1RK1,white
+data/real/images_rot180/game5_frame_000584_rot180.jpg,data/synth/images/row000142_black_20da7b47.png,rnbqkb1r/pppppppp/5n2/6B1/3P4/8/PPP1PPPP/RN1QKBNR,black
+data/real/images/game5_frame_001240.jpg,data/synth/images/row000147_white_89219bf1.png,rnbqkb1r/pp1p1ppp/5p2/2pP4/8/8/PPP1PPPP/RN1QKBNR,white
+data/real/images_rot180/game5_frame_029860_rot180.jpg,data/synth/images/row000150_black_bdd90f02.png,4B3/6R1/5r2/k4p2/P1p5/6P1/6K1/8,black
+data/real/images_rot180/game5_frame_008652_rot180.jpg,data/synth/images/row000152_black_f824177e.png,1r4k1/5p1p/r2p2P1/2pPbp2/8/4P1P1/P1R2PB1/3R2K1,black
+data/real/images/game5_frame_030036.jpg,data/synth/images/row000156_white_57ecd775.png,4B3/2R5/5r2/5p2/Pk6/2p3P1/6K1/8,white
+data/real/images_rot180/game5_frame_008620_rot180.jpg,data/synth/images/row000158_black_c03a24bb.png,1r4k1/5p1p/r2p2p1/2pPbp1P/8/4P1P1/P1R2PB1/3R2K1,black
+data/real/images/game5_frame_002552.jpg,data/synth/images/row000160_white_ed7ec061.png,rnbq1rk1/p4pbp/3p2p1/1ppP1p2/2P5/2N1P1P1/PP3PBP/R2QK1NR,white
+data/real/images/game5_frame_020172.jpg,data/synth/images/row000168_white_1f645be7.png,8/2k4p/3p2p1/1BpPPp2/P4P2/2b3P1/4R1K1/3r4,white
+data/real/images/game5_frame_001332.jpg,data/synth/images/row000172_white_ab05bfe6.png,rnbqkb1r/pp1p1p1p/5pp1/2pP4/8/8/PPP1PPPP/RN1QKBNR,white
+data/real/images_rot180/game5_frame_029960_rot180.jpg,data/synth/images/row000181_black_3cbe37fd.png,4B3/6R1/5r2/k4p2/P7/2p3P1/6K1/8,black
+data/real/images/game5_frame_006956.jpg,data/synth/images/row000182_white_143b88f7.png,r4rk1/5p1p/3p2p1/q1pPbp2/7P/4P1P1/P3QPB1/2RR2K1,white
+data/real/images_rot180/game5_frame_003140_rot180.jpg,data/synth/images/row000186_black_1c606856.png,rn1q1rk1/5pbp/b2p2p1/2pP1p2/8/2N1P1P1/PP2NPBP/R2QK2R,black
+data/real/images/game5_frame_004264.jpg,data/synth/images/row000197_white_01bf1d7c.png,r4rk1/5pbp/b2p2p1/q1pPnp2/8/2N1P1P1/PPQ1NPBP/R4RK1,white
+data/real/images_rot180/game5_frame_014872_rot180.jpg,data/synth/images/row000198_black_3168f0e5.png,8/4k2p/3p2p1/1BpPbp2/P7/4P1P1/3R1PK1/r7,black
+data/real/images_rot180/game5_frame_031428_rot180.jpg,data/synth/images/row000200_black_0acaff64.png,4B3/2R5/5r2/5p2/P7/1kp3P1/5K2/8,black
+data/real/images/game5_frame_000752.jpg,data/synth/images/row000218_white_877ee3cb.png,rnbqkb1r/pp1p1ppp/5p2/2p5/3P4/8/PPP1PPPP/RN1QKBNR,white
+data/real/images_rot180/game5_frame_002852_rot180.jpg,data/synth/images/row000223_black_acffd052.png,rnbq1rk1/p4pbp/3p2p1/1PpP1p2/8/2N1P1P1/PP3PBP/R2QK1NR,black
+data/real/images_rot180/game5_frame_007196_rot180.jpg,data/synth/images/row000238_black_c1f323ef.png,r4rk1/5p1p/3p2p1/q1pPbp2/7P/4P1P1/P1R1QPB1/3R2K1,black
+data/real/images/game5_frame_001908.jpg,data/synth/images/row000240_white_1eb70f80.png,rnbq1rk1/pp1p1pbp/6p1/2pP1p2/2P5/2N1P3/PP3PPP/R2QKBNR,white
+data/real/images/game5_frame_024528.jpg,data/synth/images/row000244_white_3fc76c9b.png,8/2k4p/6p1/1BpPpp2/P4P2/2b3P1/4R1K1/3r4,white
+data/real/images_rot180/game5_frame_033416_rot180.jpg,data/synth/images/row000249_black_cff61bc9.png,8/2R5/4r3/1B3p2/P7/1kp1K1P1/8/8,black
+data/real/images_rot180/game5_frame_004604_rot180.jpg,data/synth/images/row000254_black_129af429.png,r4rk1/5pbp/b2p2p1/q1pPnp2/8/2N1P1P1/PPQ1NPBP/R2R2K1,black
+data/real/images_rot180/game5_frame_003264_rot180.jpg,data/synth/images/row000256_black_f262d21e.png,r2q1rk1/3n1pbp/b2p2p1/2pP1p2/8/2N1P1P1/PP2NPBP/R2QK2R,black
+data/real/images/game5_frame_030000.jpg,data/synth/images/row000258_white_9940b847.png,4B3/2R5/5r2/k4p2/P7/2p3P1/6K1/8,white
+data/real/images/game5_frame_024560.jpg,data/synth/images/row000266_white_dc808931.png,8/2k4p/6p1/1BpPPp2/P7/2b3P1/4R1K1/3r4,white
+data/real/images/game5_frame_024772.jpg,data/synth/images/row000268_white_e572c2a7.png,8/2k1b2p/6p1/1Bpr1p2/P7/6P1/4R1K1/8,white
+data/real/images_rot180/game5_frame_014972_rot180.jpg,data/synth/images/row000278_black_4e560536.png,3k4/7p/3p2p1/1BpPbp2/P7/4P1P1/3R1PK1/r7,black
+data/real/images/game5_frame_031960.jpg,data/synth/images/row000283_white_3f3209e0.png,8/2R5/5r2/1B3p2/P7/1kp3P1/5K2/8,white
+data/real/images_rot180/game5_frame_011108_rot180.jpg,data/synth/images/row000286_black_96eae9fe.png,1r4k1/7p/3p2p1/2pPbp2/8/3rP1P1/P1R2P2/5BK1,black
+data/real/images/game5_frame_011364.jpg,data/synth/images/row000289_white_95d38c9e.png,1r6/5k1p/3p2p1/2pPbp2/8/3BP1P1/P1R2P2/6K1,white
+data/real/images_rot180/game5_frame_001372_rot180.jpg,data/synth/images/row000290_black_3b142877.png,rnbqkb1r/pp1p1p1p/5pp1/2pP4/2P5/8/PP2PPPP/RN1QKBNR,black
+data/real/images/game5_frame_028852.jpg,data/synth/images/row000291_white_054a1095.png,8/6R1/5rB1/k4p2/P1p5/6P1/6K1/8,white
+data/real/images/game5_frame_014148.jpg,data/synth/images/row000303_white_70faaf9a.png,8/4k2p/3p2p1/1BpPbp2/P7/4P1P1/2R2PK1/r7,white
+data/real/images/game5_frame_033636.jpg,data/synth/images/row000322_white_dd6f148a.png,8/2R5/4r3/1B3p2/P7/1kp2KP1/8/8,white
+data/real/images_rot180/game5_frame_003788_rot180.jpg,data/synth/images/row000326_black_aca212e5.png,r2q1rk1/5pbp/b2p2p1/2pPnp2/8/2N1P1P1/PP2NPBP/R2Q1RK1,black
+data/real/images_rot180/game5_frame_014124_rot180.jpg,data/synth/images/row000332_black_cd36f49d.png,8/5k1p/3p2p1/1BpPbp2/P7/4P1P1/2R2PK1/r7,black
+data/real/images_rot180/game5_frame_031272_rot180.jpg,data/synth/images/row000339_black_32e5f367.png,4B3/2R5/5r2/5p2/Pk6/2p3P1/5K2/8,black
+data/real/images/game5_frame_034592.jpg,data/synth/images/row000345_white_2d7e0ca4.png,3r4/P1R5/8/1B3p2/8/5KP1/1kp5/8,white
+data/real/images/game5_frame_033260.jpg,data/synth/images/row000352_white_69f0563c.png,8/2R5/3r4/1B3p2/P7/1kp1K1P1/8/8,white
+data/real/images_rot180/game5_frame_002472_rot180.jpg,data/synth/images/row000377_black_08c719f2.png,rnbq1rk1/pp3pbp/3p2p1/2pP1p2/2P5/2N1P1P1/PP3P1P/R2QKBNR,black
+data/real/images_rot180/game5_frame_028056_rot180.jpg,data/synth/images/row000381_black_de67356e.png,4B3/6R1/3r2p1/k4p2/P1p5/6P1/6K1/8,black
+data/real/images_rot180/game5_frame_024684_rot180.jpg,data/synth/images/row000384_black_a6bb66f1.png,8/2k4p/4P1p1/1Bpr1p2/P7/2b3P1/4R1K1/8,black
+data/real/images_rot180/game5_frame_034536_rot180.jpg,data/synth/images/row000386_black_9b163d21.png,8/2R5/P2r4/1B3p2/8/5KP1/1kp5/8,black
+data/real/images/game5_frame_002880.jpg,data/synth/images/row000389_white_e9f8d9f4.png,rnbq1rk1/5pbp/p2p2p1/1PpP1p2/8/2N1P1P1/PP3PBP/R2QK1NR,white
+data/real/images/game5_frame_002924.jpg,data/synth/images/row000393_white_5421b8b8.png,rnbq1rk1/5pbp/P2p2p1/2pP1p2/8/2N1P1P1/PP3PBP/R2QK1NR,white
+data/real/images_rot180/game5_frame_006320_rot180.jpg,data/synth/images/row000405_black_ab027bf9.png,r4rk1/5p1p/3p2p1/q1pP1p2/8/2b1P1P1/P3QPBP/2RR2K1,black
+data/real/images/game5_frame_018124.jpg,data/synth/images/row000407_white_1b38e04b.png,8/2k4p/3p2p1/1BpPbp2/P4P2/4P1P1/4R1K1/r7,white
+data/real/images/game5_frame_005792.jpg,data/synth/images/row000409_white_da1afb71.png,r4rk1/5pbp/b2p2p1/q1pP1p2/8/2N1P1P1/PQ2NPBP/2RR2K1,white
+data/real/images_rot180/game5_frame_025744_rot180.jpg,data/synth/images/row000411_black_2aa92874.png,8/6R1/3r2p1/kBp2p2/P7/6P1/6K1/8,black
+data/real/images/game5_frame_006640.jpg,data/synth/images/row000413_white_6fa0b27a.png,r4rk1/5p1p/3p2p1/q1pP1p2/7P/2b1P1P1/P3QPB1/2RR2K1,white
+data/real/images_rot180/game5_frame_009308_rot180.jpg,data/synth/images/row000414_black_99d239a8.png,1r4k1/7p/r2p2p1/2pPbp2/8/4P1P1/P1R2P2/3R1BK1,black
+data/real/images/game5_frame_018928.jpg,data/synth/images/row000417_white_10308abc.png,8/2k4p/3p2p1/1BpP1p2/P3PP2/2b3P1/4R1K1/3r4,white
+data/real/images/game5_frame_024756.jpg,data/synth/images/row000426_white_417a3eb6.png,8/2k1P2p/5bp1/1Bpr1p2/P7/6P1/4R1K1/8,white
+data/real/images/game5_frame_027140.jpg,data/synth/images/row000428_white_a0224bcf.png,4B3/6R1/3r2p1/k1p2p2/P7/6P1/6K1/8,white
+data/real/images/game5_frame_017528.jpg,data/synth/images/row000438_white_d9b5817a.png,8/2k4p/3p2p1/1BpPbp2/P7/4P1P1/4RPK1/r7,white
+data/real/images/game5_frame_034352.jpg,data/synth/images/row000440_white_dde6c180.png,8/2R5/3r4/PB3p2/8/1k3KP1/2p5/8,white
+data/real/images_rot180/game5_frame_025024_rot180.jpg,data/synth/images/row000443_black_26af6d84.png,8/7R/6p1/kBpr1p2/P7/6P1/6K1/8,black
+data/real/images/game5_frame_014008.jpg,data/synth/images/row000446_white_ec5e3e00.png,8/5k1p/3p2p1/2pPbp2/P7/3BP1P1/2R2PK1/r7,white
+data/real/images_rot180/game5_frame_004168_rot180.jpg,data/synth/images/row000451_black_8535f3bc.png,r2q1rk1/5pbp/b2p2p1/2pPnp2/8/2N1P1P1/PPQ1NPBP/R4RK1,black
+data/real/images/game5_frame_034576.jpg,data/synth/images/row000455_white_9225fd4d.png,8/P1R5/3r4/1B3p2/8/5KP1/1kp5/8,white
+data/real/images_rot180/game5_frame_009500_rot180.jpg,data/synth/images/row000457_black_2328598f.png,1r4k1/7p/3p2p1/2pPbp2/8/r2RP1P1/P1R2P2/5BK1,black
+data/real/images_rot180/game5_frame_000664_rot180.jpg,data/synth/images/row000460_black_115aa961.png,rnbqkb1r/pp1ppppp/5n2/2p3B1/3P4/8/PPP1PPPP/RN1QKBNR,black
+data/real/images_rot180/game5_frame_011488_rot180.jpg,data/synth/images/row000000_black_352d775a.png,1r6/5k1p/3p2p1/2pPbp2/8/3BP1P1/P1R2PK1/8,black
+data/real/images/game5_frame_005160.jpg,data/synth/images/row000001_white_58749833.png,r4rk1/5pbp/b2p2p1/q1pP1p2/2n5/2N1P1P1/PPQ1NPBP/2RR2K1,white
+data/real/images_rot180/game5_frame_024812_rot180.jpg,data/synth/images/row000003_black_0bcaa110.png,8/4R2p/1k4p1/1Bpr1p2/P7/6P1/6K1/8,black
+data/real/images_rot180/game5_frame_003100_rot180.jpg,data/synth/images/row000004_black_1a562727.png,rn1q1rk1/5pbp/b2p2p1/2pP1p2/8/2N1P1P1/PP3PBP/R2QK1NR,black
+data/real/images/game5_frame_011152.jpg,data/synth/images/row000006_white_840da556.png,1r4k1/7p/3p2p1/2pPbp2/8/3BP1P1/P1R2P2/6K1,white
+data/real/images_rot180/game5_frame_013728_rot180.jpg,data/synth/images/row000007_black_b71d0366.png,8/5k1p/3p2p1/2pPbp2/P7/3BP1P1/2R2PK1/1r6,black
+data/real/images_rot180/game5_frame_005560_rot180.jpg,data/synth/images/row000015_black_4b2a065b.png,r4rk1/5pbp/b2p2p1/q1pP1p2/8/2N1P1P1/PnQ1NPBP/2RR2K1,black
+data/real/images_rot180/game5_frame_001840_rot180.jpg,data/synth/images/row000021_black_248ec311.png,rnbq1rk1/pp1p1pbp/5pp1/2pP4/2P5/2N1P3/PP3PPP/R2QKBNR,black
+data/real/images/game5_frame_024600.jpg,data/synth/images/row000027_white_91bfdd34.png,8/2k4p/6p1/1BprPp2/P7/2b3P1/4R1K1/8,white
+data/real/images/game5_frame_032988.jpg,data/synth/images/row000028_white_b9a8e6b7.png,8/2R5/3r4/1B3p2/P2K4/1kp3P1/8/8,white
+data/real/images/game5_frame_015364.jpg,data/synth/images/row000029_white_f9347921.png,3k4/7p/3p2p1/1BpPbp2/P7/4P1P1/4RPK1/r7,white
+data/real/images/game5_frame_028228.jpg,data/synth/images/row000033_white_92e1868a.png,8/6R1/3r2B1/k4p2/P1p5/6P1/6K1/8,white
+data/real/images_rot180/game5_frame_007236_rot180.jpg,data/synth/images/row000038_black_e20be822.png,rr4k1/5p1p/3p2p1/q1pPbp2/7P/4P1P1/P1R1QPB1/3R2K1,black
+data/real/images/game5_frame_009020.jpg,data/synth/images/row000048_white_000e3c62.png,1r4k1/7p/r2p2p1/2pPbp2/8/4P1P1/P1R2PB1/3R2K1,white
+data/real/images_rot180/game5_frame_000548_rot180.jpg,data/synth/images/row000049_black_69afea25.png,rnbqkb1r/pppppppp/5n2/8/3P4/8/PPP1PPPP/RNBQKBNR,black
+data/real/images_rot180/game2_frame_000840_rot180.jpg,data/synth/images/row000024_black_2577c1e8.png,rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR,black
+data/real/images_rot180/game2_frame_013328_rot180.jpg,data/synth/images/row000027_black_d4711aec.png,2r3k1/pp1r1pp1/2p4p/3p4/PP1P4/4P3/2R2PPP/5RK1,black
+data/real/images_rot180/game2_frame_006568_rot180.jpg,data/synth/images/row000040_black_de7ee6f9.png,r4rk1/pp1bqpp1/1np1p2p/4N3/3P4/1BQ1P3/PP3PPP/2R2RK1,black
+data/real/images/game2_frame_000896.jpg,data/synth/images/row000050_white_3e9a81e1.png,rnbqkb1r/ppp2ppp/4pn2/3p4/2PP4/2N5/PP2PPPP/R1BQKBNR,white
+data/real/images/game2_frame_013896.jpg,data/synth/images/row000061_white_9ae07386.png,2r2k2/ppr2pp1/2p4p/3p4/PP1P4/4P3/2R2PPP/2R3K1,white
+data/real/images/game2_frame_006532.jpg,data/synth/images/row000074_white_83ed4af2.png,r4rk1/pp1bqpp1/1np1p2p/8/3P4/1BQ1PN2/PP3PPP/2R2RK1,white
+data/real/images/game2_frame_014132.jpg,data/synth/images/row000076_white_a0ed630c.png,2r2k2/ppr2pp1/2p4p/3p4/PP1P4/4P3/2R2PPP/2R2K2,white
+data/real/images/game2_frame_006092.jpg,data/synth/images/row000080_white_e052342b.png,r1b2rk1/pp2qpp1/1np1p2p/8/2BP4/2Q1PN2/PP3PPP/2R2RK1,white
+data/real/images/game2_frame_000872.jpg,data/synth/images/row000085_white_7670c9d4.png,rnbqkbnr/ppp2ppp/4p3/3p4/2PP4/2N5/PP2PPPP/R1BQKBNR,white
+data/real/images/game2_frame_005044.jpg,data/synth/images/row000087_white_170c3944.png,r1b2rk1/ppp1qpp1/1n2p2p/8/2BP4/2Q1PN2/PP3PPP/2R2RK1,white
+data/real/images/game2_frame_011456.jpg,data/synth/images/row000095_white_3939b786.png,r3r1k1/pp1bqpp1/2p4p/2QpN3/P2P4/4P3/1P3PPP/2R2RK1,white
+data/real/images/game2_frame_019988.jpg,data/synth/images/row000109_white_833c07c8.png,2r5/p4pp1/3k3p/2Rp4/PP4P1/3KP3/5P1P/8,white
+data/real/images/game2_frame_023676.jpg,data/synth/images/row000118_white_7b5b189c.png,8/p4p2/7p/2kp2p1/P4PP1/2K1P3/7P/8,white
+data/real/images/game2_frame_001124.jpg,data/synth/images/row000122_white_b9b9e7b4.png,rnbq1rk1/ppp1bppp/4pn2/3p2B1/2PP4/2N1P3/PP3PPP/R2QKBNR,white
+data/real/images/game2_frame_001740.jpg,data/synth/images/row000128_white_eea9765d.png,rnb2rk1/ppp1qpp1/4p2p/3p4/2PPn3/2N1PN2/PPQ2PPP/R3KB1R,white
+data/real/images/game2_frame_014348.jpg,data/synth/images/row000164_white_dc68b0f3.png,2r5/ppr2pp1/2pk3p/3p4/PP1P4/3KP3/2R2PPP/2R5,white
+data/real/images_rot180/game2_frame_031332_rot180.jpg,data/synth/images/row000165_black_4a81b938.png,8/8/p4p1p/k2p1Pp1/3K2P1/4P3/7P/8,black
+data/real/images_rot180/game2_frame_011760_rot180.jpg,data/synth/images/row000179_black_1b9dc4b3.png,r5k1/pp1r1pp1/2p4p/3p4/P2P4/4P3/1P3PPP/2R2RK1,black
+data/real/images_rot180/game2_frame_007728_rot180.jpg,data/synth/images/row000190_black_bee87105.png,2r2rk1/pp1bqpp1/1np1p2p/Q3N3/3P4/1B2P3/PP3PPP/2R2RK1,black
+data/real/images_rot180/game2_frame_012092_rot180.jpg,data/synth/images/row000193_black_06826993.png,r5k1/pp1r1pp1/2p4p/3p4/PP1P4/4P3/5PPP/2R2RK1,black
+data/real/images/game2_frame_012864.jpg,data/synth/images/row000194_white_4d1b5adc.png,2r3k1/pp1r1pp1/2p4p/3p4/PP1P4/4P3/5PPP/2R2RK1,white
+data/real/images/game2_frame_002000.jpg,data/synth/images/row000203_white_26c093a4.png,rnb2rk1/ppp1qpp1/4p2p/3p4/2PP4/2Q1PN2/PP3PPP/R3KB1R,white
+data/real/images_rot180/game2_frame_016592_rot180.jpg,data/synth/images/row000211_black_25f726cf.png,2r5/p1r2pp1/1ppk3p/3p4/PP1P2P1/3KP3/2R2P1P/2R5,black
+data/real/images/game2_frame_010096.jpg,data/synth/images/row000216_white_59e4931f.png,r3r1k1/pp1bqpp1/2p1p2p/2QnN3/P2P4/1B2P3/1P3PPP/2R2RK1,white
+data/real/images_rot180/game2_frame_004264_rot180.jpg,data/synth/images/row000219_black_44668ed5.png,r1b2rk1/ppp1qpp1/1n2p2p/8/2BP4/2Q1PN2/PP3PPP/R4RK1,black
+data/real/images_rot180/game2_frame_021900_rot180.jpg,data/synth/images/row000222_black_4f6eebd0.png,8/p4p2/7p/2kp2p1/P5P1/2K1P3/5P1P/8,black
+data/real/images_rot180/game2_frame_031800_rot180.jpg,data/synth/images/row000226_black_059365c7.png,8/8/pk3p1p/3K1Pp1/6P1/4P3/7P/8,black
+data/real/images_rot180/game2_frame_001916_rot180.jpg,data/synth/images/row000230_black_47436621.png,rnb2rk1/ppp1qpp1/4p2p/3p4/2PP4/2n1PN2/PPQ2PPP/R3KB1R,black
+data/real/images/game2_frame_003100.jpg,data/synth/images/row000260_white_4c9c63dc.png,rnb2rk1/ppp1qpp1/4p2p/8/2pP4/2Q1PN2/PP3PPP/R3KB1R,white
+data/real/images/game2_frame_003308.jpg,data/synth/images/row000261_white_7a4ef7a2.png,rnb2rk1/ppp1qpp1/4p2p/8/2BP4/2Q1PN2/PP3PPP/R3K2R,white
+data/real/images/game2_frame_001040.jpg,data/synth/images/row000262_white_56c7ec48.png,rnbqk2r/ppp1bppp/4pn2/3p2B1/2PP4/2N1P3/PP3PPP/R2QKBNR,white
+data/real/images/game2_frame_019384.jpg,data/synth/images/row000264_white_ec9b9e71.png,2r5/p1r2pp1/3k3p/2pp4/PP4P1/3KP3/2R2P1P/2R5,white
+data/real/images_rot180/game2_frame_026928_rot180.jpg,data/synth/images/row000269_black_8af3e090.png,8/5p2/p6p/2kp2p1/P4PP1/2K1P3/7P/8,black
+data/real/images/game2_frame_001152.jpg,data/synth/images/row000277_white_d4c41e9b.png,rnbq1rk1/ppp1bppp/4pn2/3p2B1/2PP4/2N1PN2/PP3PPP/R2QKB1R,white
+data/real/images/game2_frame_014180.jpg,data/synth/images/row000288_white_5fa1fdaa.png,2r5/ppr1kpp1/2p4p/3p4/PP1P4/4P3/2R2PPP/2R2K2,white
+data/real/images_rot180/game2_frame_000936_rot180.jpg,data/synth/images/row000295_black_412a4389.png,rnbqkb1r/ppp2ppp/4pn2/3p2B1/2PP4/2N5/PP2PPPP/R2QKBNR,black
+data/real/images_rot180/game2_frame_001280_rot180.jpg,data/synth/images/row000298_black_85d0cce1.png,rnbq1rk1/ppp1Bpp1/4p2p/3p4/2PPn3/2N1PN2/PP3PPP/R2QKB1R,black
+data/real/images/game2_frame_014208.jpg,data/synth/images/row000302_white_7a51aef4.png,2r5/ppr1kpp1/2p4p/3p4/PP1P4/4P3/2R1KPPP/2R5,white
+data/real/images/game2_frame_000200.jpg,data/synth/images/row000305_white_39bfca67.png,rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR,white
+data/real/images/game2_frame_020064.jpg,data/synth/images/row000308_white_d3367942.png,8/p4pp1/7p/2kp4/P5P1/2K1P3/5P1P/8,white
+data/real/images/game2_frame_013636.jpg,data/synth/images/row000311_white_00a61c31.png,2r3k1/ppr2pp1/2p4p/3p4/PP1P4/4P3/2R2PPP/2R3K1,white
+data/real/images_rot180/game2_frame_008952_rot180.jpg,data/synth/images/row000314_black_bc9bdde7.png,r4rk1/pp1bqpp1/1np1p2p/Q3N3/3P4/1B2P3/PP3PPP/2R2RK1,black
+data/real/images_rot180/game2_frame_001172_rot180.jpg,data/synth/images/row000329_black_099b44d2.png,rnbq1rk1/ppp1bpp1/4pn1p/3p2B1/2PP4/2N1PN2/PP3PPP/R2QKB1R,black
+data/real/images/game2_frame_001188.jpg,data/synth/images/row000335_white_ce7e1a08.png,rnbq1rk1/ppp1bpp1/4pn1p/3p4/2PP3B/2N1PN2/PP3PPP/R2QKB1R,white
+data/real/images/game2_frame_019936.jpg,data/synth/images/row000342_white_b0ed1231.png,2r5/p1r2pp1/3k3p/2Rp4/PP4P1/3KP3/5P1P/2R5,white
+data/real/images_rot180/game2_frame_011712_rot180.jpg,data/synth/images/row000347_black_d0bec316.png,r5k1/pp1brpp1/2p4p/3pN3/P2P4/4P3/1P3PPP/2R2RK1,black
+data/real/images/game2_frame_031140.jpg,data/synth/images/row000353_white_98121af0.png,8/8/p4p1p/Pk1p1Pp1/3K2P1/4P3/7P/8,white
+data/real/images_rot180/game2_frame_031032_rot180.jpg,data/synth/images/row000355_black_59a8d56f.png,8/8/p4p1p/P1kp1Pp1/6P1/2K1P3/7P/8,black
+data/real/images_rot180/game2_frame_003416_rot180.jpg,data/synth/images/row000357_black_fda73771.png,r1b2rk1/pppnqpp1/4p2p/8/2BP4/2Q1PN2/PP3PPP/R4RK1,black
+data/real/images/game2_frame_003328.jpg,data/synth/images/row000364_white_a17a648f.png,r1b2rk1/pppnqpp1/4p2p/8/2BP4/2Q1PN2/PP3PPP/R3K2R,white
+data/real/images_rot180/game2_frame_011140_rot180.jpg,data/synth/images/row000365_black_7767e96d.png,r3r1k1/pp1bqpp1/2p1p2p/2QBN3/P2P4/4P3/1P3PPP/2R2RK1,black
+data/real/images_rot180/game2_frame_006368_rot180.jpg,data/synth/images/row000368_black_1c80d87f.png,r1b2rk1/pp2qpp1/1np1p2p/8/3P4/1BQ1PN2/PP3PPP/2R2RK1,black
+data/real/images_rot180/game2_frame_001300_rot180.jpg,data/synth/images/row000378_black_0909095b.png,rnb2rk1/ppp1qpp1/4p2p/3p4/2PPn3/2N1PN2/PP3PPP/R2QKB1R,black
+data/real/images/game2_frame_011696.jpg,data/synth/images/row000395_white_d57a6508.png,r3r1k1/pp1bQpp1/2p4p/3pN3/P2P4/4P3/1P3PPP/2R2RK1,white
+data/real/images_rot180/game2_frame_030604_rot180.jpg,data/synth/images/row000399_black_c79759bf.png,8/5p2/p6p/2kp1Pp1/P5P1/2K1P3/7P/8,black
+data/real/images_rot180/game2_frame_008988_rot180.jpg,data/synth/images/row000401_black_c1f37060.png,r4rk1/pp1bqpp1/1np1p2p/2Q1N3/3P4/1B2P3/PP3PPP/2R2RK1,black
+data/real/images_rot180/game2_frame_020048_rot180.jpg,data/synth/images/row000425_black_7ae1ec4d.png,8/p4pp1/7p/2kp4/P5P1/3KP3/5P1P/8,black
+data/real/images_rot180/game2_frame_000588_rot180.jpg,data/synth/images/row000430_black_c4faa183.png,rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR,black
+data/real/images_rot180/game2_frame_001216_rot180.jpg,data/synth/images/row000433_black_d6904e14.png,rnbq1rk1/ppp1bpp1/4p2p/3p4/2PPn2B/2N1PN2/PP3PPP/R2QKB1R,black
+data/real/images/game2_frame_031664.jpg,data/synth/images/row000444_white_621c5c2c.png,8/8/p4p1p/k2K1Pp1/6P1/4P3/7P/8,white
+data/real/images/game2_frame_011740.jpg,data/synth/images/row000461_white_4076ed49.png,r5k1/pp1Nrpp1/2p4p/3p4/P2P4/4P3/1P3PPP/2R2RK1,white
+data/real/images/game2_frame_014256.jpg,data/synth/images/row000005_white_81e0147a.png,2r5/ppr2pp1/2pk3p/3p4/PP1P4/4P3/2R1KPPP/2R5,white
+data/real/images/game2_frame_030388.jpg,data/synth/images/row000008_white_066884ec.png,8/8/p4p1p/2kp1Pp1/P5P1/2K1P3/7P/8,white
+data/real/images/game2_frame_018764.jpg,data/synth/images/row000014_white_9371d8ed.png,2r5/p1r2pp1/1p1k3p/2pp4/PP1P2P1/3KP3/2R2P1P/2R5,white
+data/real/images_rot180/game2_frame_009384_rot180.jpg,data/synth/images/row000019_black_9ebd91af.png,r3r1k1/pp1bqpp1/1np1p2p/2Q1N3/3P4/1B2P3/PP3PPP/2R2RK1,black
+data/real/images_rot180/game2_frame_007000_rot180.jpg,data/synth/images/row000020_black_9d89584f.png,2r2rk1/pp1bqpp1/1np1p2p/4N3/3P4/1BQ1P3/PP3PPP/2R2RK1,black
+data/real/images/game2_frame_009884.jpg,data/synth/images/row000032_white_9a4a9195.png,r3r1k1/pp1bqpp1/1np1p2p/2Q1N3/P2P4/1B2P3/1P3PPP/2R2RK1,white
+data/real/images/game2_frame_019352.jpg,data/synth/images/row000034_white_a1ae88f9.png,2r5/p1r2pp1/1p1k3p/2Pp4/PP4P1/3KP3/2R2P1P/2R5,white
+data/real/images_rot180/game2_frame_014904_rot180.jpg,data/synth/images/row000035_black_062f5221.png,2r5/p1r2pp1/1ppk3p/3p4/PP1P4/3KP3/2R2PPP/2R5,black
+data/real/images/game2_frame_000620.jpg,data/synth/images/row000042_white_040ce4fe.png,rnbqkbnr/ppp1pppp/8/3p4/3P4/8/PPP1PPPP/RNBQKBNR,white
+data/real/images/game9_frame_014660.jpg,data/synth/images/row000464_white_5fe39b05.png,2k2r2/ppp3pp/2b2p2/2b1P3/5B2/2P2N2/P4PPP/3R2K1 w - - 0 1,white
+data/real/images_rot180/game9_frame_027896_rot180.jpg,data/synth/images/row000480_black_276ec285.png,2k1r3/1pp4p/1bb1PB2/p5p1/2P5/5N1P/P3RPP1/6K1 w - - 0 1,black
+data/real/images_rot180/game9_frame_014420_rot180.jpg,data/synth/images/row000500_black_41b79569.png,2k2r2/ppp2ppp/2b5/2b1P3/5B2/2P2N2/P4PPP/3r1RK1 w - - 0 1,black
+data/real/images_rot180/game9_frame_004804_rot180.jpg,data/synth/images/row000533_black_6fbd0724.png,r2qkb1r/ppp2ppp/2n2n2/4p3/2BPP1b1/2N2N2/PP3PPP/R1BQK2R w - - 0 1,black
+data/real/images_rot180/game9_frame_038580_rot180.jpg,data/synth/images/row000538_black_840cdd63.png,2k1r3/1pp1P3/5B1N/p1b3pp/b1P5/7P/P3RPP1/6K1 w - - 0 1,black
+data/real/images/game9_frame_025800.jpg,data/synth/images/row000539_white_38ef57b2.png,2kr4/ppp4p/1bb1Pp2/6p1/2P5/5N1P/P2BRPP1/6K1 w - - 0 1,white
+data/real/images_rot180/game9_frame_004268_rot180.jpg,data/synth/images/row000542_black_9502dfa1.png,r1bqkb1r/ppp2ppp/2n2n2/4p3/2BPP3/2N5/PP3PPP/R1BQK1NR w - - 0 1,black
+data/real/images/game9_frame_005380.jpg,data/synth/images/row000543_white_3bc68d65.png,r2qkb1r/ppp2ppp/2n2n2/4P3/2B1P1b1/2N2N2/PP3PPP/R1BQK2R w - - 0 1,white
+data/real/images_rot180/game9_frame_022168_rot180.jpg,data/synth/images/row000548_black_4f609ac9.png,2kr4/ppp4p/2b1Pp2/b5p1/2P2B2/5N1P/P3RPP1/6K1 w - - 0 1,black
+data/real/images_rot180/game9_frame_009228_rot180.jpg,data/synth/images/row000554_black_c39257b8.png,r3kb1r/pppb1ppp/2n5/1B2P3/4nB2/5N2/PP3PPP/R2NK2R w - - 0 1,black
+data/real/images_rot180/game9_frame_003896_rot180.jpg,data/synth/images/row000555_black_db5d9a18.png,r1bqkb1r/ppp1pppp/2n2n2/8/2pPP3/2N5/PP3PPP/R1BQKBNR w - - 0 1,black
+data/real/images_rot180/game9_frame_028640_rot180.jpg,data/synth/images/row000556_black_38eaaad8.png,2k1r3/1pp1P3/1bb2B1p/p5p1/2P5/5N1P/P3RPP1/6K1 w - - 0 1,black
+data/real/images/game9_frame_032576.jpg,data/synth/images/row000564_white_6bdd7cae.png,2k1r3/1pp1P3/5B1p/p1b1N1p1/b1P5/7P/P3RPP1/6K1 w - - 0 1,white
+data/real/images/game9_frame_004144.jpg,data/synth/images/row000565_white_66ddcf97.png,r1bqkb1r/ppp1pppp/2n2n2/8/2BPP3/2N5/PP3PPP/R1BQK1NR w - - 0 1,white
+data/real/images_rot180/game9_frame_028832_rot180.jpg,data/synth/images/row000567_black_066432ba.png,2k1r3/1pp1P3/2b2B1p/p1b3p1/2P5/5N1P/P3RPP1/6K1 w - - 0 1,black
+data/real/images/game9_frame_003604.jpg,data/synth/images/row000572_white_ed6bee93.png,rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR w - - 0 1,white
+data/real/images/game9_frame_027616.jpg,data/synth/images/row000574_white_9e8a479a.png,2k1r3/1pp1B2p/1bb1Pp2/p5p1/2P5/5N1P/P3RPP1/6K1 w - - 0 1,white
+data/real/images_rot180/game9_frame_003824_rot180.jpg,data/synth/images/row000575_black_1cf12444.png,rnbqkb1r/ppp1pppp/5n2/8/2pPP3/2N5/PP3PPP/R1BQKBNR w - - 0 1,black
+data/real/images_rot180/game9_frame_006468_rot180.jpg,data/synth/images/row000576_black_68fc5b23.png,r3kb1r/ppp2ppp/2n5/4P3/2B1n1b1/5N2/PP3PPP/R1BNK2R w - - 0 1,black
+data/real/images_rot180/game9_frame_013540_rot180.jpg,data/synth/images/row000579_black_d8d7462f.png,2kr1r2/ppp2ppp/2b5/2b1P3/5B2/2P2N2/P4PPP/R4RK1 w - - 0 1,black
+data/real/images_rot180/game9_frame_041076_rot180.jpg,data/synth/images/row000583_black_f1f7f9d2.png,2kRr3/1pp1P3/5B1N/p1b3pp/b1P5/7P/P4PP1/6K1 w - - 0 1,black
+data/real/images/game9_frame_021176.jpg,data/synth/images/row000589_white_cfadb8ab.png,2kr4/ppp3pp/2b1Pp2/b7/2P2B2/5N2/P3RPPP/6K1 w - - 0 1,white
+data/real/images_rot180/game9_frame_035408_rot180.jpg,data/synth/images/row000593_black_619aee26.png,2k1r3/1pp1P3/5B1p/p1b3p1/b1P3N1/7P/P3RPP1/6K1 w - - 0 1,black
+data/real/images_rot180/game9_frame_041400_rot180.jpg,data/synth/images/row000602_black_2a911478.png,2kr4/1pp1P3/5B1N/p1b3pp/b1P5/7P/P4PP1/6K1 w - - 0 1,black
+data/real/images/game9_frame_008052.jpg,data/synth/images/row000608_white_61d2d7c3.png,r3kb1r/pppb1ppp/2n5/1B2P3/4n3/5N2/PP3PPP/R1BNK2R w - - 0 1,white
+data/real/images/game9_frame_025236.jpg,data/synth/images/row000611_white_47af922c.png,2kr4/ppp4p/2b1Pp2/b5p1/2P5/5N1P/P2BRPP1/6K1 w - - 0 1,white
+data/real/images/game9_frame_003724.jpg,data/synth/images/row000612_white_ae5e6856.png,rnbqkbnr/ppp1pppp/8/8/2pP4/2N5/PP2PPPP/R1BQKBNR w - - 0 1,white
+data/real/images/game9_frame_014476.jpg,data/synth/images/row000615_white_38a021b9.png,2k2r2/ppp2ppp/2b5/2b1P3/5B2/2P2N2/P4PPP/3R2K1 w - - 0 1,white
+data/real/images_rot180/game9_frame_011980_rot180.jpg,data/synth/images/row000617_black_1a3fa509.png,2kr3r/ppp2ppp/2b5/2b1P3/4nB2/5N2/PP3PPP/R2N1RK1 w - - 0 1,black
+data/real/images_rot180/game9_frame_012948_rot180.jpg,data/synth/images/row000618_black_1c6b44c6.png,2kr3r/ppp2ppp/2b5/2b1P3/5B2/2P2N2/P4PPP/R4RK1 w - - 0 1,black
+data/real/images/game9_frame_018628.jpg,data/synth/images/row000620_white_9cdb8abe.png,2k1r3/ppp3pp/1bb1Pp2/8/5B2/2P2N2/P4PPP/4R1K1 w - - 0 1,white
+data/real/images_rot180/game9_frame_003572_rot180.jpg,data/synth/images/row000626_black_166831d3.png,rnbqkbnr/ppp1pppp/8/3p4/3P4/8/PPP1PPPP/RNBQKBNR w - - 0 1,black
+data/real/images_rot180/game9_frame_005844_rot180.jpg,data/synth/images/row000643_black_a2b24462.png,r3kb1r/ppp2ppp/2n2n2/4P3/2B1P1b1/5N2/PP3PPP/R1BNK2R w - - 0 1,black
+data/real/images_rot180/game9_frame_041476_rot180.jpg,data/synth/images/row000649_black_ce5276fe.png,2kQ4/1pp5/5B1N/p1b3pp/b1P5/7P/P4PP1/6K1 w - - 0 1,black
+data/real/images/game9_frame_007368.jpg,data/synth/images/row000654_white_1166421f.png,r3kb1r/ppp2ppp/2n5/1B2P3/4n1b1/5N2/PP3PPP/R1BNK2R w - - 0 1,white
+data/real/images_rot180/game9_frame_026532_rot180.jpg,data/synth/images/row000655_black_f6580a41.png,2kr4/ppp4p/1bb1Pp2/6p1/1BP5/5N1P/P3RPP1/6K1 w - - 0 1,black
+data/real/images/game9_frame_003756.jpg,data/synth/images/row000656_white_175613da.png,rnbqkb1r/ppp1pppp/5n2/8/2pP4/2N5/PP2PPPP/R1BQKBNR w - - 0 1,white
+data/real/images/game9_frame_017068.jpg,data/synth/images/row000658_white_b8d3615c.png,2k1r3/ppp3pp/2b1Pp2/2b5/5B2/2P2N2/P4PPP/4R1K1 w - - 0 1,white
+data/real/images_rot180/game9_frame_009644_rot180.jpg,data/synth/images/row000660_black_437e99bb.png,2kr1b1r/pppb1ppp/2n5/1B2P3/4nB2/5N2/PP3PPP/R2NK2R w - - 0 1,black
+data/real/images/game9_frame_030152.jpg,data/synth/images/row000661_white_77aa1403.png,2k1r3/1pp1P3/2b2B1p/p1b1N1p1/2P5/7P/P3RPP1/6K1 w - - 0 1,white
+data/real/images/game9_frame_010812.jpg,data/synth/images/row000668_white_9ff607b5.png,2kr1b1r/ppp2ppp/2b5/4P3/4nB2/5N2/PP3PPP/R2N1RK1 w - - 0 1,white
+data/real/images/game9_frame_028320.jpg,data/synth/images/row000670_white_39a8feeb.png,2k1r3/1pp5/1bb1PB1p/p5p1/2P5/5N1P/P3RPP1/6K1 w - - 0 1,white
+data/real/images/game9_frame_004568.jpg,data/synth/images/row000673_white_78352530.png,r1bqkb1r/ppp2ppp/2n2n2/4p3/2BPP3/2N2N2/PP3PPP/R1BQK2R w - - 0 1,white
+data/real/images_rot180/game9_frame_003692_rot180.jpg,data/synth/images/row000675_black_a593bbda.png,rnbqkbnr/ppp1pppp/8/8/2pP4/8/PP2PPPP/RNBQKBNR w - - 0 1,black
+data/real/images/game9_frame_000004.jpg,data/synth/images/row000680_white_9add83da.png,rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w - - 0 1,white
+data/real/images/game9_frame_026716.jpg,data/synth/images/row000683_white_e9abb601.png,2kr4/1pp4p/1bb1Pp2/p5p1/1BP5/5N1P/P3RPP1/6K1 w - - 0 1,white
+data/real/images_rot180/game9_frame_039720_rot180.jpg,data/synth/images/row000060_black_3fec70e5.png,2k1r3/1pp1P3/5B1N/p1b3pp/2P5/7P/P3RPP1/3b2K1 w - - 0 1,black
+data/real/images_rot180/game9_frame_019272_rot180.jpg,data/synth/images/row000068_black_b3974f9a.png,2k1r3/ppp3pp/1bb1Pp2/8/2P2B2/5N2/P4PPP/4R1K1 w - - 0 1,black
+data/real/images/game9_frame_014024.jpg,data/synth/images/row000073_white_aabfbb09.png,2kr1r2/ppp2ppp/2b5/2b1P3/5B2/2P2N2/P4PPP/3R1RK1 w - - 0 1,white
+data/real/images/game9_frame_005460.jpg,data/synth/images/row000074_white_3e8062e5.png,r3kb1r/ppp2ppp/2n2n2/4P3/2B1P1b1/2N2N2/PP3PPP/R1BqK2R w - - 0 1,white
+data/real/images/game8_frame_001140.jpg,data/synth/images/row000466_white_eed455f2.png,r1bq1b1r/pppp1kp1/2n4p/4p3/4N3/3P1N2/PPP2PPP/R1BQK2R w - - 0 1,white
+data/real/images_rot180/game8_frame_009256_rot180.jpg,data/synth/images/row000469_black_35e460dc.png,r5k1/ppp3p1/2n4p/4p1r1/2Pp4/P1PP4/1B3P2/R3RK2 w - - 0 1,black
+data/real/images/game8_frame_013068.jpg,data/synth/images/row000474_white_706a0061.png,4r1k1/pp4p1/7p/2p5/2P5/P1BP4/3K1P1r/5R2 w - - 0 1,white
+data/real/images/game8_frame_006268.jpg,data/synth/images/row000476_white_0e055b28.png,r2q2k1/ppp3p1/2n4p/3pp3/8/P1PP1r1P/1BP1QP2/R3R1K1 w - - 0 1,white
+data/real/images_rot180/game8_frame_011152_rot180.jpg,data/synth/images/row000477_black_56b50ef2.png,5rk1/ppp3p1/7p/7r/2PB4/P2P4/5P2/R4K2 w - - 0 1,black
+data/real/images_rot180/game8_frame_003108_rot180.jpg,data/synth/images/row000479_black_0a0b2db3.png,r2qr3/ppp2kp1/2n4p/3pp3/1b4b1/2NP1N2/PPP2PPP/R1BQR1K1 w - - 0 1,black
+data/real/images/game8_frame_017560.jpg,data/synth/images/row000483_white_291ac6c7.png,6k1/pp1r2p1/7p/2p5/2P5/P1B5/2K1rP2/6R1 w - - 0 1,white
+data/real/images_rot180/game8_frame_002280_rot180.jpg,data/synth/images/row000486_black_eadc0ec3.png,r2q3r/ppp2kp1/2n4p/3pp3/1b4b1/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 1,black
+data/real/images_rot180/game8_frame_000720_rot180.jpg,data/synth/images/row000487_black_fa640b08.png,r1bqkb1r/pppp1Bpp/2n5/4p3/4n3/2N2N2/PPPP1PPP/R1BQK2R w - - 0 1,black
+data/real/images_rot180/game8_frame_015040_rot180.jpg,data/synth/images/row000495_black_ad9e23bc.png,3r2k1/pp4p1/7p/2p5/2P5/P1BP3r/3K1P2/6R1 w - - 0 1,black
+data/real/images_rot180/game8_frame_011504_rot180.jpg,data/synth/images/row000496_black_d19227c6.png,4r1k1/ppp3p1/7p/7r/2PB4/P2P4/4KP2/R7 w - - 0 1,black
+data/real/images_rot180/game8_frame_009112_rot180.jpg,data/synth/images/row000498_black_2aab8528.png,r5k1/ppp3p1/2n4p/4p2r/2Pp4/P1PP4/1B3PK1/R3R3 w - - 0 1,black
+data/real/images_rot180/game8_frame_007188_rot180.jpg,data/synth/images/row000502_black_7893a41b.png,r2q2k1/ppp3p1/2n4p/3pp3/6Q1/P1PP3r/1BP2P2/R3R1K1 w - - 0 1,black
+data/real/images/game8_frame_014988.jpg,data/synth/images/row000504_white_4c39c8fc.png,3r2k1/pp4p1/7p/2p5/2P5/P1BP3r/3K1P2/5R2 w - - 0 1,white
+data/real/images/game8_frame_005856.jpg,data/synth/images/row000508_white_2907564b.png,r2q1rk1/ppp3p1/2n4p/3pp3/8/P1PP1P1P/1BPQ1P2/R3R1K1 w - - 0 1,white
+data/real/images/game8_frame_003892.jpg,data/synth/images/row000512_white_07a93df9.png,r2qr3/ppp2kp1/2n4p/3pp3/6b1/P1PP1N2/2P2PPP/R1BQR1K1 w - - 0 1,white
+data/real/images/game8_frame_020348.jpg,data/synth/images/row000515_white_a39fe517.png,6k1/pp4p1/7p/2p5/K1P5/P4r2/5B2/3r2R1 w - - 0 1,white
+data/real/images_rot180/game8_frame_012516_rot180.jpg,data/synth/images/row000516_black_d6e6c041.png,4r1k1/pp4p1/7p/2p5/2P5/P1BP4/3K1P1r/R7 w - - 0 1,black
+data/real/images/game8_frame_023260.jpg,data/synth/images/row000519_white_6aeb08ff.png,8/p4rpk/7p/K1p5/2P5/8/8/6B1 w - - 0 1,white
+data/real/images_rot180/game8_frame_017784_rot180.jpg,data/synth/images/row000520_black_afbf4c86.png,6k1/pp1r2p1/7p/2p5/2P5/PKB5/4rP2/6R1 w - - 0 1,black
+data/real/images/game8_frame_015872.jpg,data/synth/images/row000521_white_99b3bc0a.png,3r2k1/pp1r2p1/5B1p/2p5/2P5/P7/2K2P2/6R1 w - - 0 1,white
+data/real/images_rot180/game8_frame_003552_rot180.jpg,data/synth/images/row000532_black_063503fa.png,r2qr3/ppp2kp1/2n4p/3pp3/6b1/P1bP1N2/1PP2PPP/R1BQR1K1 w - - 0 1,black
+data/real/images/game8_frame_004876.jpg,data/synth/images/row000534_white_05f1023a.png,r2qr1k1/ppp3p1/2n4p/3pp2b/8/P1PP1N1P/2P2PP1/R1BQR1K1 w - - 0 1,white
+data/real/images/game8_frame_018604.jpg,data/synth/images/row000537_white_41ca0ca5.png,6k1/pp1r2p1/7p/2p5/2P5/PK6/5r2/4B1R1 w - - 0 1,white
+data/real/images/game8_frame_002388.jpg,data/synth/images/row000540_white_f82cbe90.png,r2q3r/ppp2kp1/2n4p/3pp3/1b4b1/2NP1N2/PPP2PPP/R1BQR1K1 w - - 0 1,white
+data/real/images/game8_frame_024408.jpg,data/synth/images/row000544_white_13ed5008.png,8/p5pk/8/2K5/2Pr3p/8/8/8 w - - 0 1,white
+data/real/images/game8_frame_000264.jpg,data/synth/images/row000545_white_19583dab.png,rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w - - 0 1,white
+data/real/images_rot180/game8_frame_013928_rot180.jpg,data/synth/images/row000550_black_5a22af90.png,5rk1/pp4p1/7p/2p5/2P5/P1BPK3/5P1r/5R2 w - - 0 1,black
+data/real/images/game8_frame_003280.jpg,data/synth/images/row000552_white_e7a81523.png,r2qr3/ppp2kp1/2n4p/3pp3/1b4b1/P1NP1N2/1PP2PPP/R1BQR1K1 w - - 0 1,white
+data/real/images_rot180/game8_frame_005432_rot180.jpg,data/synth/images/row000566_black_cf3ed64e.png,r2q1rk1/ppp3p1/2n4p/3pp2b/8/P1PP1N1P/1BP2PP1/R2QR1K1 w - - 0 1,black
+data/real/images/game8_frame_021440.jpg,data/synth/images/row000571_white_06f7d29a.png,6k1/pp4p1/7p/1Kp2r2/2P5/P7/8/6B1 w - - 0 1,white
+data/real/images_rot180/game8_frame_006148_rot180.jpg,data/synth/images/row000573_black_9cc3917f.png,r2q2k1/ppp3p1/2n4p/3pp3/8/P1PP1r1P/1BPQ1P2/R3R1K1 w - - 0 1,black
+data/real/images/game8_frame_014364.jpg,data/synth/images/row000578_white_b8558bcd.png,5rk1/pp4p1/7p/2p5/2P5/P1BP3r/4KP2/5R2 w - - 0 1,white
+data/real/images/game8_frame_006872.jpg,data/synth/images/row000580_white_6d2833f6.png,r2q2k1/ppp3p1/2n4p/3pp3/8/P1PP3r/1BP1QP2/R3R1K1 w - - 0 1,white
+data/real/images/game8_frame_024564.jpg,data/synth/images/row000581_white_cf615173.png,8/p5pk/8/8/2PK4/7p/8/8 w - - 0 1,white
+data/real/images/game8_frame_011540.jpg,data/synth/images/row000584_white_4065cd07.png,4r1k1/ppp3p1/7p/7r/2PB4/P2P4/3K1P2/R7 w - - 0 1,white
+data/real/images_rot180/game8_frame_001288_rot180.jpg,data/synth/images/row000585_black_3c3a9f43.png,r1bq1b1r/ppp2kp1/2n4p/3pp3/8/2NP1N2/PPP2PPP/R1BQK2R w - - 0 1,black
+data/real/images_rot180/game8_frame_025024_rot180.jpg,data/synth/images/row000588_black_8d68a508.png,8/p5pk/2P5/8/3K4/8/7p/8 w - - 0 1,black
+data/real/images/game8_frame_014088.jpg,data/synth/images/row000595_white_de9c59d7.png,5rk1/pp4p1/7p/2p5/2P5/P1BPK2r/5P2/5R2 w - - 0 1,white
+data/real/images/game8_frame_022640.jpg,data/synth/images/row000596_white_47e7138a.png,8/p5pk/1p5p/1Kp2r2/P1P5/8/8/6B1 w - - 0 1,white
+data/real/images/game8_frame_008428.jpg,data/synth/images/row000603_white_696a6fb6.png,r5k1/ppp3p1/2n4p/3pp2r/8/P1PP4/1BP2PK1/R3R3 w - - 0 1,white
+data/real/images_rot180/game8_frame_010908_rot180.jpg,data/synth/images/row000606_black_5ae17ad8.png,5rk1/ppp3p1/7p/4r3/2Pn4/P2P4/1B3P2/R4K2 w - - 0 1,black
+data/real/images/game8_frame_023952.jpg,data/synth/images/row000609_white_19d17cda.png,8/p5pk/8/2K5/2P2r1p/8/8/6B1 w - - 0 1,white
+data/real/images_rot180/game8_frame_013704_rot180.jpg,data/synth/images/row000613_black_702751de.png,5rk1/pp4p1/7p/2p5/2P5/P1BP4/3K1P1r/5R2 w - - 0 1,black
+data/real/images/game8_frame_000532.jpg,data/synth/images/row000616_white_5a174c38.png,r1bqkb1r/pppp1ppp/2n5/4p3/2B1n3/2N2N2/PPPP1PPP/R1BQK2R w - - 0 1,white
+data/real/images_rot180/game8_frame_024352_rot180.jpg,data/synth/images/row000619_black_94c77204.png,8/p5pk/8/2K5/2PB1r1p/8/8/8 w - - 0 1,black
+data/real/images/game8_frame_009488.jpg,data/synth/images/row000621_white_354a7f07.png,5rk1/ppp3p1/2n4p/4p1r1/2Pp4/P1PP4/1B3P2/R3RK2 w - - 0 1,white
+data/real/images/game8_frame_005564.jpg,data/synth/images/row000622_white_9ff282b7.png,r2q1rk1/ppp3p1/2n4p/3pp2b/8/P1PP1N1P/1BPQ1PP1/R3R1K1 w - - 0 1,white
+data/real/images_rot180/game8_frame_008372_rot180.jpg,data/synth/images/row000625_black_eb60186a.png,r5k1/ppp3p1/2n4p/3pp3/8/P1PP3r/1BP2PK1/R3R3 w - - 0 1,black
+data/real/images_rot180/game8_frame_014808_rot180.jpg,data/synth/images/row000627_black_3c5a85f7.png,4r1k1/pp4p1/7p/2p5/2P5/P1BP3r/4KP2/5R2 w - - 0 1,black
+data/real/images_rot180/game8_frame_023012_rot180.jpg,data/synth/images/row000628_black_59815be8.png,8/p4rpk/Kp5p/P1p5/2P5/8/8/6B1 w - - 0 1,black
+data/real/images_rot180/game8_frame_000440_rot180.jpg,data/synth/images/row000631_black_e292de7a.png,r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w - - 0 1,black
+data/real/images/game8_frame_010968.jpg,data/synth/images/row000632_white_7f81841c.png,5rk1/ppp3p1/7p/4r3/2PB4/P2P4/5P2/R4K2 w - - 0 1,white
+data/real/images_rot180/game8_frame_005788_rot180.jpg,data/synth/images/row000633_black_3bb50123.png,r2q1rk1/ppp3p1/2n4p/3pp3/8/P1PP1b1P/1BPQ1PP1/R3R1K1 w - - 0 1,black
+data/real/images/game8_frame_000884.jpg,data/synth/images/row000636_white_46b73f37.png,r1bq1b1r/pppp1kpp/2n5/4p3/4N3/5N2/PPPP1PPP/R1BQK2R w - - 0 1,white
+data/real/images_rot180/game8_frame_019884_rot180.jpg,data/synth/images/row000639_black_f0cf048f.png,6k1/pp4p1/7p/2p5/K1P5/P4r2/8/3rB1R1 w - - 0 1,black
+data/real/images_rot180/game8_frame_001812_rot180.jpg,data/synth/images/row000641_black_4a0a8a47.png,r1bq3r/ppp2kp1/2n4p/3pp3/1b6/2NP1N2/PPP2PPP/R1BQ1RK1 w - - 0 1,black
+data/real/images/game8_frame_020548.jpg,data/synth/images/row000644_white_182df40a.png,6k1/pp4p1/7p/2p5/K1P5/P4r2/8/6B1 w - - 0 1,white
+data/real/images_rot180/game8_frame_015684_rot180.jpg,data/synth/images/row000646_black_4ba28af8.png,3r2k1/pp1r2p1/7p/2p5/2P5/P1B5/2K2P2/6R1 w - - 0 1,black
+data/real/images_rot180/game8_frame_023736_rot180.jpg,data/synth/images/row000648_black_1786d7af.png,8/p5pk/7p/K1p5/2P2r2/8/8/6B1 w - - 0 1,black
+data/real/images/game8_frame_007748.jpg,data/synth/images/row000650_white_040625e4.png,r5k1/ppp3p1/2n4p/3pp1q1/8/P1PP3r/1BP2PQ1/R3R1K1 w - - 0 1,white
+data/real/images_rot180/game8_frame_004672_rot180.jpg,data/synth/images/row000652_black_7f206896.png,r2qr1k1/ppp3p1/2n4p/3pp3/6b1/P1PP1N1P/2P2PP1/R1BQR1K1 w - - 0 1,black
+data/real/images_rot180/game8_frame_010684_rot180.jpg,data/synth/images/row000664_black_3562dd0c.png,5rk1/ppp3p1/7p/4R1r1/2Pn4/P2P4/1B3P2/R4K2 w - - 0 1,black
+data/real/images_rot180/game8_frame_017476_rot180.jpg,data/synth/images/row000665_black_604c0332.png,4r1k1/pp1r2p1/7p/2p5/2P5/P1B5/2K2P2/6R1 w - - 0 1,black
+data/real/images/game8_frame_012044.jpg,data/synth/images/row000666_white_d3c00c32.png,4r1k1/pp4p1/7p/2p4r/2P5/P1BP4/3K1P2/R7 w - - 0 1,white
+data/real/images/game8_frame_004280.jpg,data/synth/images/row000667_white_29f8bf7b.png,r2qr1k1/ppp3p1/2n4p/3pp3/6b1/P1PP1N2/2P2PPP/R1BQR1K1 w - - 0 1,white
+data/real/images/game8_frame_009796.jpg,data/synth/images/row000669_white_91c4ed4e.png,5rk1/ppp3p1/7p/4p1r1/2Pn4/P2P4/1B3P2/R3RK2 w - - 0 1,white
+data/real/images/game8_frame_011336.jpg,data/synth/images/row000674_white_b09fa32a.png,5rk1/ppp3p1/7p/7r/2PB4/P2P4/4KP2/R7 w - - 0 1,white
+data/real/images_rot180/game8_frame_019720_rot180.jpg,data/synth/images/row000676_black_b2f90489.png,6k1/pp1r2p1/7p/2p5/K1P5/P4r2/8/4B1R1 w - - 0 1,black
+data/real/images/game8_frame_025860.jpg,data/synth/images/row000678_white_06535773.png,8/p1q3pk/8/8/4K3/8/8/8 w - - 0 1,white
+data/real/images/game8_frame_025280.jpg,data/synth/images/row000679_white_e64403e6.png,8/p5pk/2P5/8/3K4/8/8/7q w - - 0 1,white
+data/real/images/game8_frame_016788.jpg,data/synth/images/row000681_white_01a6a93f.png,4r1k1/pp1r2p1/5B1p/2p5/2P5/P7/2K2P2/6R1 w - - 0 1,white
+data/real/images/game8_frame_021784.jpg,data/synth/images/row000682_white_5639ea8b.png,6k1/p5p1/1p5p/1Kp2r2/2P5/P7/8/6B1 w - - 0 1,white
+data/real/images_rot180/game8_frame_007548_rot180.jpg,data/synth/images/row000054_black_7cacabe3.png,r5k1/ppp3p1/2n4p/3pp1q1/6Q1/P1PP3r/1BP2P2/R3R1K1 w - - 0 1,black
+data/real/images_rot180/game8_frame_011700_rot180.jpg,data/synth/images/row000055_black_4cd690fb.png,4r1k1/pp4p1/7p/2p4r/2PB4/P2P4/3K1P2/R7 w - - 0 1,black
+data/real/images_rot180/game8_frame_001032_rot180.jpg,data/synth/images/row000056_black_9b3dfb40.png,r1bq1b1r/pppp1kp1/2n4p/4p3/4N3/5N2/PPPP1PPP/R1BQK2R w - - 0 1,black
+data/real/images_rot180/game8_frame_005148_rot180.jpg,data/synth/images/row000057_black_83816ab1.png,r2qr1k1/ppp3p1/2n4p/3pp2b/8/P1PP1N1P/1BP2PP1/R2QR1K1 w - - 0 1,black
+data/real/images/game8_frame_026372.jpg,data/synth/images/row000062_white_ff568250.png,8/2q3pk/8/7K/8/p7/8/8 w - - 0 1,white
+data/real/images/game8_frame_000000.jpg,data/synth/images/row000063_white_9add83da.png,rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w - - 0 1,white
+data/real/images_rot180/game8_frame_022512_rot180.jpg,data/synth/images/row000065_black_7ed9aae1.png,6k1/p5p1/1p5p/1Kp2r2/P1P5/8/8/6B1 w - - 0 1,black
+data/real/images_rot180/game8_frame_008772_rot180.jpg,data/synth/images/row000067_black_6c3e8617.png,r5k1/ppp3p1/2n4p/3pp2r/2P5/P2P4/1BP2PK1/R3R3 w - - 0 1,black
+data/real/images_rot180/game8_frame_009660_rot180.jpg,data/synth/images/row000069_black_a0494e5a.png,5rk1/ppp3p1/2n4p/4p1r1/2PP4/P2P4/1B3P2/R3RK2 w - - 0 1,black
+data/real/images/game8_frame_022816.jpg,data/synth/images/row000075_white_646a4983.png,8/p4rpk/Kp5p/2p5/P1P5/8/8/6B1 w - - 0 1,white
+data/real/images/game8_frame_008872.jpg,data/synth/images/row000076_white_a54e5e81.png,r5k1/ppp3p1/2n4p/4p2r/2Pp4/P2P4/1BP2PK1/R3R3 w - - 0 1,white

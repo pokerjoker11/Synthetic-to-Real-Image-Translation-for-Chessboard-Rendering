@@ -1,0 +1,11 @@
+{
+  "typeCheckingMode": "basic",
+  "reportMissingImports": "none",
+  "exclude": [
+    "**/__pycache__",
+    ".venv",
+    "results",
+    "checkpoints",
+    "data"
+  ]
+}

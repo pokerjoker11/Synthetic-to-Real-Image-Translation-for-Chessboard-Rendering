@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project data & outputs (DO NOT COMMIT)
+data/real/
+data/synth/
+data/mask_manual/
+data/raw/
+renders/
+results/
+checkpoints/
+outputs/
+cloud_dataset_trainval*/
+drive_format_trainval*/
+*.zip
+legacy/
+docs/
+
+# OS junk
+.DS_Store
+Thumbs.db
+.cursor/
+
+# Jupyter
+.ipynb_checkpoints/
+
+"Project 3: Synthetic-to-Real Image Translation for Chessboard Rendering"
+"Project Final: Photorealistic Chessboard Rendering"

@@ -1,0 +1,13 @@
+# Core ML dependencies
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.24.0
+pillow>=9.0.0
+pandas>=1.5.0
+tqdm>=4.60.0
+
+# Chess utilities (for FEN parsing in Blender script)
+chess>=1.10.0
+
+# Note: Blender is required for synthetic rendering but is installed separately.
+# Set BLENDER_PATH environment variable if blender is not in PATH.
