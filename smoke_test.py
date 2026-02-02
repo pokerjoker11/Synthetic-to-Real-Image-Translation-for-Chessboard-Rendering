@@ -92,6 +92,10 @@ def check_train_help() -> bool:
         print("      [FAIL] --train_csv not in help output")
         return False
 
+    if "--mask_dir" not in result.stdout:
+        print("      [FAIL] --mask_dir not in help output")
+        return False
+
     print("      [OK] train.py --help works")
     return True
 
@@ -158,13 +162,13 @@ def check_model_forward() -> bool:
         print(f"      [FAIL] {e}")
         return False
 
-
 def run_mini_training() -> bool:
-    """Run 2 training steps if data exists."""
+    """Run 2 training steps if data exists (current pipeline: pairs + masks)."""
     print("[OPTIONAL] Running 2-step training test...")
 
-    train_csv = REPO_ROOT / "data" / "splits_rect" / "train.csv"
-    val_csv = REPO_ROOT / "data" / "splits_rect" / "val.csv"
+    train_csv = REPO_ROOT / "data" / "pairs" / "train.csv"
+    val_csv = REPO_ROOT / "data" / "pairs" / "val.csv"
+    masks_dir = REPO_ROOT / "data" / "masks_manual"
 
     if not train_csv.exists():
         print(f"      [SKIP] {train_csv} not found")
@@ -172,6 +176,11 @@ def run_mini_training() -> bool:
     if not val_csv.exists():
         print(f"      [SKIP] {val_csv} not found")
         return True
+    if not masks_dir.exists():
+        print(f"      [SKIP] {masks_dir} not found (masks required for training)")
+        return True
+
+    ckpt_dir = "checkpoints_smoke_test"
 
     result = subprocess.run(
         [
@@ -180,15 +189,19 @@ def run_mini_training() -> bool:
             "--val_csv", str(val_csv),
             "--max_steps", "2",
             "--device", "cpu",
+            "--num_workers", "0",
             "--log_every", "1",
-            "--sample_every", "999",
-            "--val_every", "999",
-            "--ckpt_dir", "checkpoints_smoke_test",
+            "--sample_every", "2",
+            "--sample_nocrop",
+            "--val_every", "2",
+            "--ckpt_dir", ckpt_dir,
+            "--mask_dir", str(masks_dir),
+            "--lambda_piece", "5",
         ],
         capture_output=True,
         text=True,
         cwd=str(REPO_ROOT),
-        timeout=120,
+        timeout=180,
     )
 
     if result.returncode != 0:
@@ -197,16 +210,21 @@ def run_mini_training() -> bool:
         print(f"      stderr: {result.stderr[-500:]}")
         return False
 
-    print("      [OK] 2-step training completed")
-    
+    # Confirm it actually wrote a checkpoint
+    ckpt_path = REPO_ROOT / ckpt_dir / "latest.pt"
+    if not ckpt_path.exists():
+        print(f"      [FAIL] training finished but checkpoint not found: {ckpt_path}")
+        return False
+
+    print("      [OK] 2-step training completed and checkpoint written")
+
     # Cleanup
-    ckpt_dir = REPO_ROOT / "checkpoints_smoke_test"
-    if ckpt_dir.exists():
+    ckpt_dir_path = REPO_ROOT / ckpt_dir
+    if ckpt_dir_path.exists():
         import shutil
-        shutil.rmtree(ckpt_dir, ignore_errors=True)
+        shutil.rmtree(ckpt_dir_path, ignore_errors=True)
 
     return True
-
 
 def main() -> int:
     ap = argparse.ArgumentParser()
