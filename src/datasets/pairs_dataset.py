@@ -39,7 +39,7 @@ class PairedChessDataset(Dataset):
         train: bool = True,
         hflip_prob: float = 0.5,
         seed: int = 0,
-        mask_dir: str | Path = "data/masks",
+        mask_dir: str | Path = "data/masks_manual",
         require_masks: bool = True,
     ):
         self.csv_path = Path(csv_path)

@@ -221,7 +221,7 @@ def main() -> None:
     ap.add_argument("--samples_dir", type=str, default="results/train_samples")
     ap.add_argument("--ckpt_dir", type=str, default="checkpoints")
     ap.add_argument("--seed", type=int, default=123)
-    ap.add_argument("--mask_dir", type=str, default="data/masks")
+    ap.add_argument("--mask_dir", type=str, default="data/masks_manual")
     ap.add_argument("--lambda_piece", type=float, default=5.0, help="Mask-weighted L1 weight (pieces/foreground).")
     ap.add_argument("--no_masks", action="store_true", help="Debug only: disable mask loading/loss.")
 

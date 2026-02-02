@@ -28,7 +28,7 @@ This project implements a Pix2Pix-based image translation model that converts sy
 
 ```bash
 # 1) Clone
-git clone https://github.com/pokerjoker11/Synthetic-to-Real-Image-Translation-for-Chessboard-Rendering.git
+git clone https://github.com/pokerjoker11/Synthetic-to-Real-Image-Translation-for-Chessboard-Rendering.git chess-s2r
 cd chess-s2r
 
 # 2) Create + activate venv
