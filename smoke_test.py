@@ -163,7 +163,7 @@ def check_model_forward() -> bool:
         return False
 
 def run_mini_training() -> bool:
-    """Run 2 training steps if data exists (current pipeline: pairs + masks)."""
+    """Run 2 training steps if data exists."""
     print("[OPTIONAL] Running 2-step training test...")
 
     train_csv = REPO_ROOT / "data" / "pairs" / "train.csv"
