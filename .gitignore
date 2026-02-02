@@ -17,7 +17,7 @@ env/
 # Project data & outputs (DO NOT COMMIT)
 data/real/
 data/synth/
-data/mask_manual/
+data/masks_manual/
 data/raw/
 renders/
 results/
